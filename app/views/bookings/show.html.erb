@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Listing:</strong>
+  <%= @booking.listing_id %>
+</p>
+
+<p>
+  <strong>Offer:</strong>
+  <%= @booking.offer_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @booking.status %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>
