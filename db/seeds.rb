@@ -7,8 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
+Category.delete_all
+
 admin_user = User.create!(first_name: 'sadiq', last_name: 'okocha', address: '8 alhaji kanike close', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin")
 
 normal_user1 = User.create!(first_name: 'james', last_name: 'fajimolu', address: '12 sanusfi fafunwa',phone_number: '08188699925',email: "user@specialist.com", password: 'password', role: "user" )
 
 normal_user2 = User.create!(first_name: 'chudi', last_name: 'ngonadi', address: '33 alfred rewane',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user")
+
+category_1 = Category.create!(name: 'Plumber')
+category_2 = Category.create!(name: 'Carpenter')
+category_3 = Category.create!(name: 'Crafts')
+category_4 = Category.create!(name: 'Painter')
+category_5 = Category.create!(name: 'Electrician')
+category_6 = Category.create!(name: 'Engineer')
