@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :address, presence: true
   validates :phone_number, length:{maximum: 14}
   validates :phone_number, length:{minimum: 10}
+  validates :phone_number, uniqueness: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,5 +20,6 @@ class User < ActiveRecord::Base
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
   end
+
 
 end
