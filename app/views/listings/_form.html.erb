@@ -31,10 +31,7 @@
     <%= f.label :status %><br>
     <%= f.text_field :status %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
     <%= f.label :category_id, 'Category' %><br>
     <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
