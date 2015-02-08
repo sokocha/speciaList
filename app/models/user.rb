@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   has_many :offers, through: :listings
   has_many :offers
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :phone_number, presence: true
-  validates :address, presence: true
-  validates :phone_number, length:{maximum: 14}
-  validates :phone_number, length:{minimum: 10}
-  validates :phone_number, uniqueness: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
+  # validates :phone_number, presence: true
+  # validates :address, presence: true
+  # validates :phone_number, length:{maximum: 14}
+  # validates :phone_number, length:{minimum: 10}
+  # validates :phone_number, uniqueness: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

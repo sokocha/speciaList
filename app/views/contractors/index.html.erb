@@ -3,11 +3,11 @@
 <table>
   <thead>
     <tr>
-      <th>Wage</th>
+      <th>Hourly Wage</th>
       <th>Certified</th>
       <th>User</th>
       <th>Category</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -16,8 +16,18 @@
       <tr>
         <td><%= contractor.wage %></td>
         <td><%= contractor.certified %></td>
-        <td><%= contractor.user_id %></td>
-        <td><%= contractor.category_id %></td>
+        <!-- <td><%= contractor.user_id %></td> -->
+
+        <% User.where(id: contractor.user_id).each do |user| %>
+        <td> <%= user.first_name %></td>
+        <% end %>
+
+        <% Category.where(id: contractor.category_id).each do |category| %>
+        <td> <%= category.name %></td>
+        <% end %>
+
+        
+        <!-- <td><%= contractor.category_id %></td> -->
         <td><%= link_to 'Show', contractor %></td>
         <td><%= link_to 'Edit', edit_contractor_path(contractor) %></td>
         <td><%= link_to 'Destroy', contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

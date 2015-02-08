@@ -35,5 +35,8 @@
   <%= @listing.category_id %>
 </p>
 
+<%= link_to 'Make a Bid', new_offer_path  %>
+<%= @listing.offers.count %>
+
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>
