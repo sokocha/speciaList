@@ -21,7 +21,7 @@
         <!-- <td><%= contractor.user_id %></td> -->
 
         <% User.where(id: contractor.user_id).each do |user| %>
-        <td> <%= user.first_name + ' '+ user.last_name[0]+'.'%></td>
+        <td> <%= user.first_name + ' '+ user.last_name.first+'.'%></td>
         <% end %>
 
         <% Category.where(id: contractor.category_id).each do |category| %>
