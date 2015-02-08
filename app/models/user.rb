@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :offers, through: :listings
   has_many :offers
+  before_save :capitalize_content
+
+
 
   # validates :first_name, presence: true
   # validates :last_name, presence: true
@@ -20,6 +23,15 @@ class User < ActiveRecord::Base
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
   end
+
+  def capitalize_content
+    self.first_name = self.first_name.capitalize
+    self.last_name = self.last_name.capitalize
+    self.address = self.address.capitalize
+  end
+
+  
+
 
 
 end
