@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
-admin_user = User.create!(email: "admin@idea.com", password: 'password', role: "admin", username: "admin")
+admin_user = User.create!(first_name: 'sadiq', last_name: 'okocha', address: '8 alhaji kanike close', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin")
