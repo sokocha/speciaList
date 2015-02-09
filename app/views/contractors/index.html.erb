@@ -8,7 +8,7 @@
       <th>Verified</th>
       <th>User</th>
       <th>Category</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -18,10 +18,10 @@
         <td><%= contractor.wage %></td>
         <td><%= contractor.certified %></td>
         <td><%= contractor.verified %></td>
-        <!-- <td><%= contractor.user_id %></td> -->
+
 
         <% User.where(id: contractor.user_id).each do |user| %>
-        <td> <%= user.first_name%></td>
+        <td> <%= user.first_name %></td>
         <% end %>
 
         <% Category.where(id: contractor.category_id).each do |category| %>

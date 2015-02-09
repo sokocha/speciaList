@@ -28,6 +28,7 @@ class Ability
       cannot :update, Booking
       can :update, User
       cannot :update, Category
+      
 
     else
         # what can non-logged-in users do?
