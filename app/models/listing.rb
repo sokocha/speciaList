@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  accepts_nested_attributes_for :offers
+
   belongs_to :user
   belongs_to :category
   has_many :offers
