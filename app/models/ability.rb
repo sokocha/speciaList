@@ -17,7 +17,9 @@ class Ability
       cannot :create, Category
 
       can :destroy, Offer
-      can :destroy, Listing
+      can :destroy, Listing do |listing|
+        listing.try(:user_id) == user.id
+      end
       cannot :destroy, Contractor
       cannot :destroy, User
       cannot :destroy, Category
@@ -25,7 +27,7 @@ class Ability
 
 
       cannot :update, Offer
-      
+    
 
       can :update, Contractor do |contractor|
         contractor.try(:user_id) == user.id
