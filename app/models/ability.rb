@@ -38,7 +38,11 @@ class Ability
       end
 
       cannot :update, Booking
-      can :update, User
+
+      can :update, User do |u|
+        u.id == user.id
+      end
+
       cannot :update, Category
       
 
