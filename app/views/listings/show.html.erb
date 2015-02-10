@@ -47,10 +47,29 @@
   </div>
 <% end %>
 
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @offers.each do |offer| %>
+      <tr>
+        <td><%= offer.price %></td>
+        <td><%= offer.status %></td>
+        <td> <%= (User.where(id: offer.user_id).map {|user| user.first_name}).join(",") %></td>
+        <td><%= link_to 'Show', offer %></td>
 
-<%= link_to 'Make a Bid', new_offer_path  %>
 
-<p>Number of offers <%= @listing.offers.count %> </p>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>
