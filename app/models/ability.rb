@@ -22,9 +22,19 @@ class Ability
       cannot :destroy, User
       cannot :destroy, Category
 
-      can :update, Offer
-      can :update, Contractor
-      can :update, Listing
+
+
+      cannot :update, Offer
+      
+
+      can :update, Contractor do |contractor|
+        contractor.try(:user_id) == user.id
+      end
+
+      can :update, Listing do |listing|
+        listing.try(:user_id) == user.id
+      end
+
       cannot :update, Booking
       can :update, User
       cannot :update, Category
