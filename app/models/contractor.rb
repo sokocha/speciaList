@@ -1,6 +1,7 @@
 class Contractor < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  
 
   validates :wage, presence: true
   validates :user_id, presence: true

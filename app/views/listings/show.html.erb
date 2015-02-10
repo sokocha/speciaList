@@ -40,7 +40,7 @@
 <%= form_for @offer do |offer_form|%>
     Price : <%= offer_form.number_field :price %>
     Total Hours: <%= offer_form.number_field :hours %>
-    
+    <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
     <%= offer_form.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
       <%= offer_form.submit %>
@@ -53,19 +53,16 @@
       <th>Price</th>
       <th>Status</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
     <% @offers.each do |offer| %>
       <tr>
         <td><%= offer.price %></td>
-        <td><%= offer.status %></td>
-        <td> <%= (User.where(id: offer.user_id).map {|user| user.first_name}).join(",") %></td>
-        <td><%= link_to 'Show', offer %></td>
-
-
-        
+        <td><%= offer.hours %></td>
+        <td> <%= offer.user_id %></td>
+        <td><%= link_to 'Show', offer_path %></td>
       </tr>
     <% end %>
   </tbody>
