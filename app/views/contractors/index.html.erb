@@ -19,20 +19,14 @@
         <td><%= contractor.certified %></td>
         <td><%= contractor.verified %></td>
 
-
-
         <% User.where(id: contractor.user_id).each do |user| %>
-        <td> <%= user.first_name %></td>
+        <td> <%= link_to user.first_name ,  contractor %> </td>
         <% end %>
 
         <% Category.where(id: contractor.category_id).each do |category| %>
         <td> <%= category.name %></td>
         <% end %>
 
-        
-        
-
-        <td><%= link_to 'Show', contractor %></td>
         <% if can? :edit, contractor%>
         <td><%= link_to 'Edit', edit_contractor_path(contractor) %></td>
         <% end %>
@@ -47,6 +41,6 @@
 
 <br>
 
-<% if can? :create, @contractor %>
-<%= link_to 'New Contractor', new_contractor_path %>
+<% if can? :create, Contractor %>
+<%= link_to 'Become a Contractor!', new_contractor_path %>
 <% end %>

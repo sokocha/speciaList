@@ -7,6 +7,7 @@ class ContractorsController < ApplicationController
 
   def index
     @contractors = Contractor.all
+    
     respond_with(@contractors)
   end
 
