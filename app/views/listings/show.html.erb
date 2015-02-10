@@ -35,6 +35,26 @@
   <%= @listing.category_id %>
 </p>
 
+<%= form_for(@listing) do |f| %>
+  <% @users.each do |user| -%>
+    <%= user.name %>
+      <% @offers.each do |offer| %>
+        <%= offer.hours %>
+        <%= offer.price %>
+        <%= offer.status %>
+        <%= offer.user_id %>
+        <%= f.fields_for :users, user do |q| %>
+          <%= q.fields_for :offers, user.offers.find_or_initialize_by(user: user) do |a| -%>
+            <%= a.number_field :hours %>
+            <%= a.number_field :price %>
+            <%= a.text_area :content %>
+            <%= a.hidden_field :user_id, user.id %>
+          <% end %>
+        <% end %>
+      <% end %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Make a Bid', new_offer_path  %>
 <%= @listing.offers.count %>
 
