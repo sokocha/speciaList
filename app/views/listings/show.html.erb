@@ -35,28 +35,22 @@
   <%= @listing.category_id %>
 </p>
 
-<%= form_for(@listing) do |f| %>
-  <% @users.each do |user| -%>
-    <%= user.name %>
-      <% @offers.each do |offer| %>
-        <%= offer.hours %>
-        <%= offer.price %>
-        <%= offer.status %>
-        <%= offer.user_id %>
-        <%= f.fields_for :users, user do |q| %>
-          <%= q.fields_for :offers, user.offers.find_or_initialize_by(user: user) do |a| -%>
-            <%= a.number_field :hours %>
-            <%= a.number_field :price %>
-            <%= a.text_area :content %>
-            <%= a.hidden_field :user_id, user.id %>
-          <% end %>
-        <% end %>
-      <% end %>
-  <% end %>
+
+
+<%= form_for @offer do |offer_form|%>
+    Price : <%= offer_form.number_field :price %>
+    Total Hours: <%= offer_form.number_field :hours %>
+    
+    <%= offer_form.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+      <%= offer_form.submit %>
+  </div>
 <% end %>
 
+
 <%= link_to 'Make a Bid', new_offer_path  %>
-<%= @listing.offers.count %>
+
+<p>Number of offers <%= @listing.offers.count %> </p>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>

@@ -1,10 +1,12 @@
 class Listing < ActiveRecord::Base
-  accepts_nested_attributes_for :offers
+  
 
   belongs_to :user
   belongs_to :category
   has_many :offers
   has_one :booking
+
+  accepts_nested_attributes_for :offers
 
   validates :title, presence: true
   validates :budget, presence: true

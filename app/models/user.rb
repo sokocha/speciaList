@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_one :contractor, dependent: :destroy
   has_many :listings
   has_many :offers, through: :listings
-  has_many :offers
+  
   
   # before_save :capitalize_content
 

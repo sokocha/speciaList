@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @offer = @listing.offers.new
     respond_with(@listing)
   end
 
@@ -20,6 +21,7 @@ class ListingsController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -31,6 +33,7 @@ class ListingsController < ApplicationController
   def update
     @listing.update(listing_params)
     respond_with(@listing)
+
   end
 
   def destroy
@@ -44,6 +47,6 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:title, :budget, :description, :image, :status, :user_id, :category_id, :offers_attributes=>[:id,:hours, :user_id])
+      params.require(:listing).permit(:title, :budget, :description, :image, :status, :user_id, :category_id, :offers_attributes=>[:id,:hours, :price, :user_id])
     end
 end
