@@ -27,7 +27,7 @@
         <td><%= user.id %></td>
 
         <td><%= link_to 'Show', user %></td>
-        <% if can? :edit, user || user.id == current_user.id %>
+        <% if can? :update, user %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <% end %>
 
