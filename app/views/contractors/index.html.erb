@@ -31,10 +31,14 @@
 
         
         
-        
+
         <td><%= link_to 'Show', contractor %></td>
+        <% if can? :edit, contractor%>
         <td><%= link_to 'Edit', edit_contractor_path(contractor) %></td>
+        <% end %>
+        <% if can? :destroy, contractor %>
         <td><%= link_to 'Destroy', contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
 
       </tr>
     <% end %>
@@ -43,5 +47,6 @@
 
 <br>
 
-
+<% if can? :create, @contractor %>
 <%= link_to 'New Contractor', new_contractor_path %>
+<% end %>

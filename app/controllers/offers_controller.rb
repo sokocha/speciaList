@@ -10,9 +10,7 @@ class OffersController < ApplicationController
     respond_with(@offers)
   end
 
-  def show
-    respond_with(@offer)
-  end
+ 
 
   def new
     @offer = Offer.new

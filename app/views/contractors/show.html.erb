@@ -25,5 +25,7 @@
   <%= @contractor.category_id %>
 </p>
 
+<% if can? :edit, @contractor %>
 <%= link_to 'Edit', edit_contractor_path(@contractor) %> |
+<% end %>
 <%= link_to 'Back', contractors_path %>

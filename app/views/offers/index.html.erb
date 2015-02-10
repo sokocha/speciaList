@@ -18,9 +18,14 @@
         <td><%= offer.status %></td>
         <td><%= offer.listing_id %></td>
         <td><%= offer.user_id %></td>
-        <td><%= link_to 'Show', offer %></td>
-        <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
+        
+        <% if can? :edit, offer %>
+          <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
+        <% end %>
+      
+        <% if can? :destroy, offer %>
         <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

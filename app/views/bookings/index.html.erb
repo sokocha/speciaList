@@ -17,9 +17,13 @@
         <td><%= booking.offer_id %></td>
         <td><%= booking.status %></td>
         <td><%= link_to 'Show', booking %></td>
+        <% if can? :edit, booking %>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
- 
+        <% end %>
+        
+        <% if can? :destroy, booking %>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +31,6 @@
 
 <br>
 
-<%= link_to 'New Booking', new_booking_path %>
+<% if can? :create, @booking %>
+  <%= link_to 'New Booking', new_booking_path %>
+<% end %>
