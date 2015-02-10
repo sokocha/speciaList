@@ -20,6 +20,13 @@ contractor_admin = Contractor.create!(user_id: admin_user.id, wage: 235)
 contractor_1 = Contractor.create!(user_id: normal_user1.id, wage: 2114)
 contractor_2 = Contractor.create!(user_id: normal_user2.id, wage: 2114)
 
+category_1 = Category.create!(name: 'Plumber')
+category_2 = Category.create!(name: 'Carpenter')
+category_3 = Category.create!(name: 'Crafts')
+category_4 = Category.create!(name: 'Painter')
+category_5 = Category.create!(name: 'Electrician')
+category_6 = Category.create!(name: 'Engineer')
+
 listing1 = Listing.create!(title: 'leaky pipes', budget: 14550 , description:"The pipes in my apartment have leaked and now my apartment has turned into a swimming pool. My carpet is damaged, so i need someone over here asap. Please come sooooooooon!" , image: 'http://www.propertyrepair.ie/uploads/9/2/2/6/9226934/934581_orig.jpg' , user_id: User.last.id, category_id: 1)
 
 listing2 = Listing.create!(title: 'broken chair', budget: 5000, description: "Goldilocks broke my chair and now I have not chair to sit in. Damn Goldilocks always doing shit, she's not supposed to do. Good thing I have chair insurance" , image: 'http://fc05.deviantart.net/fs41/i/2009/023/d/0/Item_1__Broken_Chair_by_MystStock.jpg', user_id:User.first.id, category_id:2 )
@@ -29,9 +36,4 @@ listing4 = Listing.create!(title: 'broken down car engine', budget: 500000 , des
 
 listing5 = Listing.create!(title: 'crossed wires', budget: 4200 , description: "All the power in my house has gone out. Not sure what exactly the problem is, but be careful because prior to the blackout, it gave quite a shock!" , image: 'http://i1.trekearth.com/photos/7604/wired1.jpg', user_id: User.first.id, category_id: 5)
 
-category_1 = Category.create!(name: 'Plumber')
-category_2 = Category.create!(name: 'Carpenter')
-category_3 = Category.create!(name: 'Crafts')
-category_4 = Category.create!(name: 'Painter')
-category_5 = Category.create!(name: 'Electrician')
-category_6 = Category.create!(name: 'Engineer')
+
