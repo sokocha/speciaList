@@ -5,7 +5,6 @@ class OffersController < ApplicationController
 
   respond_to :html
 
- 
 
  
 

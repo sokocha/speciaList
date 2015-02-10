@@ -27,10 +27,14 @@
         <td><%= user.id %></td>
 
         <td><%= link_to 'Show', user %></td>
-        <% if user.id == current_user.id %>
+        <% if can? :edit, user || user.id == current_user.id %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <% end %>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if can? :destroy, user %>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +42,7 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<% if can? :create, @user %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>
+
