@@ -5,10 +5,7 @@ class OffersController < ApplicationController
 
   respond_to :html
 
-  def index
-    @offers = Offer.all
-    respond_with(@offers)
-  end
+ 
 
  
 
