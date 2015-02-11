@@ -12,24 +12,27 @@ class Ability
       can :create, Contractor
       can :create, Offer
       can :create, Listing
-      can :create, Booking 
+      cannot :create, Booking 
       cannot :create, User
       cannot :create, Category
 
       can :destroy, Offer
+      
       can :destroy, Listing do |listing|
         listing.try(:user_id) == user.id
       end
+
       can :update, User do |u|
         u.id == user.id
       end
+
       cannot :destroy, Contractor
       cannot :destroy, Category
       
 
 
 
-      cannot :update, Offer
+      can :update, Offer
     
 
       can :update, Contractor do |contractor|
