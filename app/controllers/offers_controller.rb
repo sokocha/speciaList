@@ -6,7 +6,9 @@ class OffersController < ApplicationController
   respond_to :html
 
 
- 
+ def show
+  respond_with(@offer)
+ end
 
   def new
     @offer = Offer.new
@@ -24,7 +26,8 @@ class OffersController < ApplicationController
 
   def update
     @offer.update(offer_params)
-    respond_with(@offer)
+    # respond_with(@offer)
+    redirect_to(listing_path(@offer.listing_id))
   end
 
   def destroy

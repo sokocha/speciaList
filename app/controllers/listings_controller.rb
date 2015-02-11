@@ -11,7 +11,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @offer = @listing.offers.new
+    # @offer = @listing.offers.new
     @offers = @listing.offers
     respond_with(@listing)
   end

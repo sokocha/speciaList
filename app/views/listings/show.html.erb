@@ -37,14 +37,14 @@
 
 
 
-<%= form_for @offer do |offer_form|%>
-    Price : <%= offer_form.number_field :price %>
-    Total Hours: <%= offer_form.number_field :hours %>
-    <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
-    <%= offer_form.hidden_field :user_id, :value => current_user.id %>
-  <div class="actions">
-      <%= offer_form.submit %>
-  </div>
+<%= form_for Offer.new do |offer_form|%>
+Price : <%= offer_form.number_field :price %>
+Total Hours: <%= offer_form.number_field :hours %>
+<%= offer_form.hidden_field :listing_id, :value => @listing.id %>
+<%= offer_form.hidden_field :user_id, :value => current_user.id %>
+<div class="actions">
+  <%= offer_form.submit %>
+</div>
 <% end %>
 
 <table>
@@ -63,10 +63,20 @@
         <td><%= offer.hours %></td>
         <td> <%= offer.user_id %></td>
         <td><%= link_to 'Show', offer_path %></td>
+        <td>
+          <%= form_for :offer, url: offer_path(offer), method: :patch do |f| -%>
+            <%= f.hidden_field :listing_id, :value => offer.listing_id -%>
+            <%= f.hidden_field :offer_id, :value => offer.id -%>
+            <%= f.hidden_field :price, :value => offer.price -%>
+            <%= f.hidden_field :status, :value => 'accepted' -%>
+            <%= f.submit 'Accept' %>
+          <% end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
 <% if can? :edit, @listing %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> |

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @offer.price %> </br>
+  <%= @offer.user_id %></br>
+  <%= @offer.status %></br>
+</p>
+
+<% if can? :create, Offer  %>
+<%= link_to 'Edit', edit_offer_path(@offer) %> |
+<% end %>
+
+<%= link_to 'Back', offers_path %>

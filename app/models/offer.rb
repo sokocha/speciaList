@@ -7,7 +7,17 @@ class Offer < ActiveRecord::Base
   validates :price, :numericality => { :greater_than_or_equal_to => 1 }
   
   validates :user_id, presence: true
-  
+  after_save :create_booking
+ 
+
+
+  def create_booking
+    if status == 'accepted'
+      Booking.create(listing_id: listing_id, offer_id: id)
+      Offer.where(listing_id: listing_id).where.not(status: 'accepted').update_all(status: 'declined')
+    end
+  end
+
 
 
 
