@@ -21,7 +21,7 @@ class Offer < ActiveRecord::Base
 
   def create_booking
     if status == 'accepted'
-      Booking.create(listing_id: listing_id, offer_id: id)
+      @booking = Booking.create(listing_id: listing_id, offer_id: id)
       Offer.where(listing_id: listing_id).where.not(status: 'accepted').update_all(status: 'declined')
       Listing.where(id: listing_id).update_all(status: 'contracted')
     end

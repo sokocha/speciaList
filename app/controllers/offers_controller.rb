@@ -21,7 +21,8 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(offer_params)
     @offer.save
-    respond_with(@offer)
+    @listing = Listing.where(id: @offer.listing_id).map {|listing| listing}
+    redirect_to listing_path(@listing)
   end
 
   def update
