@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
   #   self.address = self.address.capitalize
   # end
 
+  def email_required?
+    false
+  end
+
   
 
 
