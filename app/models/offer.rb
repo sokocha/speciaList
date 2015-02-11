@@ -8,6 +8,14 @@ class Offer < ActiveRecord::Base
   
   validates :user_id, presence: true
   after_save :create_booking
+
+  validate :acceptable_status
+
+
+  def acceptable_status
+    status == 'accepted' || status == 'declined' || status == nil
+  end
+
  
 
 
