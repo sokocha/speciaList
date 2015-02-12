@@ -2,7 +2,7 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @listing.title %>
+  <%= @listing.title %> by <%= link_to @listing.user.first_name, user_path(@listing.user)   %>
 </p>
 
 <% if @listing.try(:booking) != nil %>
