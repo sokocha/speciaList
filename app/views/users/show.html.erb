@@ -82,6 +82,7 @@
 <% end %>
 
 <table>
+  <h2>Active Listings</h2>
   <thead>
     <tr>
       <th>Title</th>
@@ -94,6 +95,7 @@
 
   <tbody>
     <% @user.listings.each do |listing| %>
+    <% if listing.status == "uncontracted" %>
       <tr>
         <td> <%= link_to listing.title, listing_path(listing)  %> </td>
         <td><%= listing.try(:status) %></td>
@@ -105,6 +107,40 @@
         <% end %>
         <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
       </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <h2>My Bookings</h2>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Total Cost (₦)</th>
+      <th>Status</th>
+      <th>Contractor</th>
+      <th>Category</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.listings.each do |listing| %>
+    <% if listing.booking %>
+      <tr>
+        <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
+        <td> <%= listing.booking.offer.price %></td>
+        <td><%= listing.booking.try(:status) %></td>
+
+        <% if listing.booking != nil %>
+        <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+        <%else%>
+          <td> <p>TBD</p></td>
+        <% end %>
+        <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
