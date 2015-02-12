@@ -36,16 +36,18 @@
 </p>
 
 
-
+<% if can? :create, @listing.offers.new %>
 <%= form_for Offer.new do |offer_form|%>
-Price : <%= offer_form.number_field :price %>
-Total Hours: <%= offer_form.number_field :hours %>
-<%= offer_form.hidden_field :listing_id, :value => @listing.id %>
-<%= offer_form.hidden_field :user_id, :value => current_user.id %>
-<div class="actions">
-  <%= offer_form.submit %>
-</div>
+  Price : <%= offer_form.number_field :price %>
+  Total Hours: <%= offer_form.number_field :hours %>
+  <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
+  <%= offer_form.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= offer_form.submit %>
+  </div>
 <% end %>
+<% end %>
+
 
 <table>
   <thead>
@@ -65,7 +67,7 @@ Total Hours: <%= offer_form.number_field :hours %>
         <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
         <td><%= link_to 'Show', offer_path %></td>
         <td>
-          <%= form_for :offer, url: offer_path(offer), method: :patch do |f| -%>
+          <%= form_for offer, method: :patch do |f| -%>
             <%= f.hidden_field :listing_id, :value => offer.listing_id -%>
             <%= f.hidden_field :offer_id, :value => offer.id -%>
             <%= f.hidden_field :price, :value => offer.price -%>

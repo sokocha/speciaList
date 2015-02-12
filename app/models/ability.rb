@@ -11,6 +11,11 @@ class Ability
       can :read, :all
       can :create, Contractor
       can :create, Offer
+
+      cannot :create, Offer do |offer|
+        offer.listing.try(:user) == user
+      end
+
       can :create, Listing
       cannot :create, Booking 
       cannot :create, User
@@ -37,10 +42,8 @@ class Ability
        Listing.where(id: offer.listing_id).map {|listing| listing.user_id}.join(',').to_i == user.id
       end
 
-# Can't create an offer if listing owner equals offers user_id
-      cannot :create, Offer do |offer|
-        Listing.where(id: offer.listing_id).map {|listing| listing.user_id}.join(',').to_i == offer.user_id
-      end
+# Can't create an offer if listing owner equals offers user
+      
 
 
     
