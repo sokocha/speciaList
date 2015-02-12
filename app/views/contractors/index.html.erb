@@ -1,5 +1,13 @@
 <h1>Listing contractors</h1>
 
+<% if can? :create, Contractor %>
+<% if current_user.contractor.try(:status) == nil  %>
+<%= link_to 'Become a Contractor!', new_contractor_path %>
+<% end %>
+<% end %>
+<br/>
+<br/>
+
 <table>
   <thead>
     <tr>
@@ -42,8 +50,4 @@
 <br>
 
 
-<% if can? :create, Contractor %>
-<% if current_user.contractor.status == nil  %>
-<%= link_to 'Become a Contractor!', new_contractor_path %>
-<% end %>
-<% end %>
+
