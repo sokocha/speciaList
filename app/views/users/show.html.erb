@@ -11,7 +11,7 @@
 </p>
 
 
-<% if @user.contractor != nil %>
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Job Category:</strong>
   <%= @user.try(:contractor).try(:category).try(:name) %>
@@ -26,14 +26,14 @@
 </p>
 
 
-<% if @user.contractor != nil %>
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Certification</strong>
   <%= @user.try(:contractor).try(:certified) %>
 </p>
 <% end %>
 
-<% if @user.contractor != nil %>
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Verified by SpeciaList™</strong>
   <%= @user.try(:contractor).try(:verified) %>
