@@ -45,6 +45,6 @@ class ContractorsController < ApplicationController
     end
 
     def contractor_params
-      params.require(:contractor).permit(:wage, :certified, :user_id, :category_id, :verified)
+      params.require(:contractor).permit(:wage, :certified, :user_id, :category_id, :verified, :status)
     end
 end
