@@ -63,22 +63,51 @@
   <%= @user.longitude %>
 </p>
 
+<% if @user.contractor != nil %>
 <% if can? :update, @user %>
-<% if @user.contractor.status == 'active' %>
+<% if @user.contractor.try(:status) == 'active' %>
 <%= form_for @user.contractor, method: :patch do |f| %>
   <%= f.hidden_field :status, :value => nil -%>
   <%= f.submit 'Disable Contractor Profile' %>
 <% end %>
 <% end %>
 
-<% if @user.contractor.status != 'active' %>
+<% if @user.contractor.try(:status) != 'active' %>
 <%= form_for @user.contractor, method: :patch do |f| %>
   <%= f.hidden_field :status, :value => 'active' -%>
   <%= f.submit 'Enable Contractor Profile' %>
 <% end %>
 <% end %>
 <% end %>
+<% end %>
 
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Contractor</th>
+      <th>Category</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.listings.each do |listing| %>
+      <tr>
+        <td> <%= link_to listing.title, listing_path(listing)  %> </td>
+        <td><%= listing.try(:status) %></td>
+
+        <% if listing.booking != nil %>
+        <td> <%= link_to listing.try(:booking).try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+        <%else%>
+          <td> <p>TBD</p></td>
+        <% end %>
+        <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 <% if can? :update, @user %>
