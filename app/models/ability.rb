@@ -21,6 +21,10 @@ class Ability
       cannot :create, User
       cannot :create, Category
 
+      cannot :create, Offer do |offer|
+        user.contractor == nil
+      end
+
       can :destroy, Offer
       
       can :destroy, Listing do |listing|
