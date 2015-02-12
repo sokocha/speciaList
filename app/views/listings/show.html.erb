@@ -5,6 +5,12 @@
   <%= @listing.title %>
 </p>
 
+<% if @listing.try(:booking) != nil %>
+<p>
+  <%= link_to 'View Booking', booking_path(@listing.try(:booking))  %>
+</p>
+<% end %>
+
 <p>
   <strong>Budget:</strong>
   <%= @listing.budget %>

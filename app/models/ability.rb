@@ -17,7 +17,10 @@ class Ability
       end
 
       can :create, Listing
-      cannot :create, Booking 
+
+      cannot :create, Booking do |booking|
+        booking.listing.status == 'contracted'
+      end 
       cannot :create, User
       cannot :create, Category
 
