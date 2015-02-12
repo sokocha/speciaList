@@ -33,7 +33,9 @@ class Ability
 
 
 
-      can :update, Offer
+      cannot :update, Offer
+
+
     
 
       can :update, Contractor do |contractor|

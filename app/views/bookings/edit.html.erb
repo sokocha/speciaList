@@ -4,3 +4,7 @@
 
 <%= link_to 'Show', @booking %> |
 <%= link_to 'Back', bookings_path %>
+
+<% if can? :destroy, Booking %>
+  <%= button_to "Cancel Booking", booking_path(@booking), data: { confirm: "Are you sure? All records for this booking, including any ratings will be destroyed" }, method: :delete %></p>
+<%end %>

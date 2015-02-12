@@ -7,7 +7,7 @@
 <%= @offer.user_id %></br>
 <%= @offer.status %></br>
 
-<% if can? :create, Offer  %>
+<% if can? :update, Offer  %>
 <%= link_to 'Edit', edit_offer_path(@offer) %> |
 <% end %>
 
