@@ -15,6 +15,13 @@
   <%= @booking.status %>
 </p>
 
+<%= form_for :booking, url: booking_path(@booking), method: :patch, data: {confirm: "All payments released are final. Press Ok to release money"} do |f| %>
+<%= f.hidden_field :status, :value => 'complete' %>
+<%= f.submit 'Make Final Payment' %>
+<% end %>
+
+
+
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path %>
 <% if can? :destroy, @booking %>
