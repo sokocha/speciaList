@@ -130,7 +130,7 @@
     <% if listing.booking %>
       <tr>
         <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
-        <td> <%= listing.booking.offer.price %></td>
+        <td> ₦<%= listing.booking.offer.price %></td>
         <td><%= listing.booking.try(:status) %></td>
 
         <% if listing.booking != nil %>
