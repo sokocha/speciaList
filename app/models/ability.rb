@@ -53,7 +53,7 @@ class Ability
       end
 
       can :update, Listing do |listing|
-        listing.try(:user_id) == user.id
+        listing.try(:user) == user
       end
 
       can :update, Booking do |booking|

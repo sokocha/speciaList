@@ -66,6 +66,8 @@
         <td> <%= offer.user_id %></td>
         <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
         <td><%= link_to 'Show', offer_path %></td>
+
+        <% if can? :update, @listing %>
         <td>
           <%= form_for offer, method: :patch do |f| -%>
             <%= f.hidden_field :listing_id, :value => offer.listing_id -%>
@@ -75,6 +77,7 @@
             <%= f.submit 'Accept' %>
           <% end -%>
         </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
