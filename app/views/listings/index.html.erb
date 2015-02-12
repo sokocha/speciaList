@@ -1,4 +1,4 @@
-<h1>Listing</h1>
+<h1>Listings</h1>
 
 <% if can? :create, Listing %>
 <%= link_to 'New Listing', new_listing_path %>
@@ -17,11 +17,11 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @listings.each do |listing| %>
       <tr>
-        <td><%= listing.title %></td>
+        <td> <%= link_to listing.title , listing_path(listing)  %> </td>
         <td>₦<%= listing.budget %></td>
         <td><%= listing.description %></td>
         <td><%= listing.image %></td>

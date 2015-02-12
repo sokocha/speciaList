@@ -20,6 +20,13 @@
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
+  <strong>Hourly Wage:</strong>
+  ₦<%= @user.try(:contractor).try(:wage) %>
+</p>
+<% end %>
+
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
+<p>
   <strong>Status:</strong>
   <%= @user.contractor.status %>
 </p>
