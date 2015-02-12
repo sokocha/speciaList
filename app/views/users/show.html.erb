@@ -18,10 +18,12 @@
 </p>
 <% end %>
 
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Status:</strong>
   <%= @user.contractor.status %>
 </p>
+<% end %>
 
 
 
@@ -61,9 +63,18 @@
   <%= @user.longitude %>
 </p>
 
+<% if @user.contractor.status == 'active' %>
 <%= form_for @user.contractor, method: :patch do |f| %>
-  <%= f.hidden_field :status, :value => 'disabled' -%>
+  <%= f.hidden_field :status, :value => nil -%>
   <%= f.submit 'Disable Contractor Profile' %>
+<% end %>
+<% end %>
+
+<% if @user.contractor.status != 'active' %>
+<%= form_for @user.contractor, method: :patch do |f| %>
+  <%= f.hidden_field :status, :value => 'active' -%>
+  <%= f.submit 'Enable Contractor Profile' %>
+<% end %>
 <% end %>
 
 
