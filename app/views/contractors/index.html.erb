@@ -11,7 +11,7 @@
 <table>
   <thead>
     <tr>
-      <th>Hourly Wage</th>
+      <th>Hourly Wage ₦</th>
       <th>Certified</th>
       <th>Verified</th>
       <th>User</th>
@@ -31,9 +31,15 @@
         <td> <%= link_to user.first_name ,  contractor %> </td>
         <% end %>
 
-        <% Category.where(id: contractor.category_id).each do |category| %>
-        <td> <%= category.name %></td>
+        <% if contractor.category != nil %>
+        <td>
+          <%= link_to contractor.category.name, category_path(contractor.category) %>
+        </td>
+        <% else %>
+        <td> Not Listed</td>
         <% end %>
+
+
 
         <% if can? :edit, contractor%>
         <td><%= link_to 'Edit', edit_contractor_path(contractor) %></td>
