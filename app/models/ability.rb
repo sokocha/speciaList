@@ -33,7 +33,7 @@ class Ability
 
 
 
-      cannot :update, Offer
+      can :update, Offer
 
 
     
