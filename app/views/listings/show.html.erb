@@ -67,6 +67,7 @@
         <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
         <td><%= link_to 'Show', offer_path %></td>
 
+         
         <% if can? :update, @listing %>
         <td>
           <%= form_for offer, method: :patch do |f| -%>

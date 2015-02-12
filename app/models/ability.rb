@@ -56,6 +56,10 @@ class Ability
         listing.try(:user) == user
       end
 
+      cannot :update, Listing do |listing|
+        listing.status == 'contracted'
+      end
+
       can :update, Booking do |booking|
         Listing.where(id: booking.listing_id).map {|listing| listing.user_id}.join(',').to_i == user.id
       end
