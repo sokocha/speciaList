@@ -33,7 +33,9 @@ class Ability
 
 
 
-      can :update, Offer
+      can :update, Offer do |offer|
+       Listing.where(id: offer.listing_id).map {|listing| listing.user_id}.join(',').to_i == user.id
+      end
 
 
     
