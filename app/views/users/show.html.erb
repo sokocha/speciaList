@@ -63,6 +63,7 @@
   <%= @user.longitude %>
 </p>
 
+<% if can? :update, @user %>
 <% if @user.contractor.status == 'active' %>
 <%= form_for @user.contractor, method: :patch do |f| %>
   <%= f.hidden_field :status, :value => nil -%>
@@ -76,7 +77,7 @@
   <%= f.submit 'Enable Contractor Profile' %>
 <% end %>
 <% end %>
-
+<% end %>
 
 
 
