@@ -32,9 +32,14 @@ class Ability
       
 
 
-
+# Only can accept offer if, it's your listing
       can :update, Offer do |offer|
        Listing.where(id: offer.listing_id).map {|listing| listing.user_id}.join(',').to_i == user.id
+      end
+
+# Can't create an offer if listing owner equals offers user_id
+      cannot :create, Offer do |offer|
+        Listing.where(id: offer.listing_id).map {|listing| listing.user_id}.join(',').to_i == offer.user_id
       end
 
 

@@ -1,5 +1,9 @@
 <h1>Listing listings</h1>
 
+<% if can? :create, Listing %>
+<%= link_to 'New Listing', new_listing_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -38,6 +42,4 @@
 
 <br>
 
-<% if can? :create, Listing %>
-<%= link_to 'New Listing', new_listing_path %>
-<% end %>
+
