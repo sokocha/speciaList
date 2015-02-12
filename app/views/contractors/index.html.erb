@@ -41,6 +41,9 @@
 
 <br>
 
+
 <% if can? :create, Contractor %>
+<% if current_user.contractor.status == nil  %>
 <%= link_to 'Become a Contractor!', new_contractor_path %>
+<% end %>
 <% end %>
