@@ -1,19 +1,45 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
+  <strong>Name:</strong>
+  <%= @user.first_name %> <%= @user.last_name %>
 </p>
 
 <p>
   <strong>Avatar:</strong>
   <%= @user.avatar %>
 </p>
+
+
+<% if @user.contractor != nil %>
+<p>
+  <strong>Job Category:</strong>
+  <%= @user.try(:contractor.category.name) %>
+</p>
+<% end %>
+
+
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @user.phone_number %>
+</p>
+
+
+<% if @user.contractor != nil %>
+<p>
+  <strong>Certification</strong>
+  <%= @user.try(:contractor.certified) %>
+</p>
+<% end %>
+
+<% if @user.contractor != nil %>
+<p>
+  <strong>Verified by SpeciaList™</strong>
+  <%= @user.try(:contractor.verified) %>
+</p>
+<% end %>
+
 
 <p>
   <strong>Address:</strong>
@@ -30,10 +56,7 @@
   <%= @user.longitude %>
 </p>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @user.phone_number %>
-</p>
+
 
 <% if can? :update, @user %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
