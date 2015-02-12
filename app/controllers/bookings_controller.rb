@@ -29,8 +29,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.save
     respond_with(@booking)
-    redirect_to booking_path
-
   end
 
   def update

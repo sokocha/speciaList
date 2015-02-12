@@ -28,6 +28,7 @@ class Ability
 
       cannot :destroy, Contractor
       cannot :destroy, Category
+      cannot :destroy, Booking
       
 
 
