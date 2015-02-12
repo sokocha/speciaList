@@ -62,6 +62,7 @@ Total Hours: <%= offer_form.number_field :hours %>
         <td><%= offer.price %></td>
         <td><%= offer.hours %></td>
         <td> <%= offer.user_id %></td>
+        <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
         <td><%= link_to 'Show', offer_path %></td>
         <td>
           <%= form_for :offer, url: offer_path(offer), method: :patch do |f| -%>
