@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
+Contractor.delete_all
+Booking.delete_all
 Category.delete_all
 Listing.delete_all
 

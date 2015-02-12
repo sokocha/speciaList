@@ -27,9 +27,9 @@
         <td><%= contractor.certified %></td>
         <td><%= contractor.verified %></td>
 
-        <% User.where(id: contractor.user_id).each do |user| %>
-        <td> <%= link_to user.first_name ,  contractor %> </td>
-        <% end %>
+    
+        <td>  <%= link_to contractor.user.first_name, user_path(contractor.user)  %></td>
+       
 
         <% if contractor.category != nil %>
         <td>
