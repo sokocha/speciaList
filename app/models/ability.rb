@@ -57,6 +57,10 @@ class Ability
         user.involved_in?(booking)
       end
 
+      can :manage, Comment do |comment|
+        user.involved_in?(comment.commentable)
+      end
+
       # cannot :create, Comment do |comment|
       #   current_user != booking.listing.user || current_user != booking.offer.user
       # end

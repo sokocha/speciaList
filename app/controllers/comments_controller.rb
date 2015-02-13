@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, except: [:new, :create]
-  before_action :set_booking
-  authorize_resource :only => [:new, :create, :edit,:update,:destroy]
+  # before_action :set_comment, except: [:new, :create]
+  # before_action :set_booking
+  load_and_authorize_resource :booking
+  load_and_authorize_resource :comment, through: :booking
 
   def new
     @comment = @booking.comments.new
@@ -27,14 +28,14 @@ class CommentsController < ApplicationController
     end
   end
 
-  private
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
+  # private
+  # def set_comment
+  #   @comment = Comment.find(params[:id])
+  # end
 
-  def set_booking
-    @booking = Booking.find(params[:booking_id])
-  end
+  # def set_booking
+  #   @booking = Booking.find(params[:booking_id])
+  # end
 
   def prepare_new_comment
     @comment = Comment.new(commentable_id: @booking.id, commentable_type: @booking.constantize)
