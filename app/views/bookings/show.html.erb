@@ -52,7 +52,7 @@
   <div class="tab-content">
     <% if current_user %>
       <h4>Write a Comment:</h4>
-      <%= form_for([@comment, Comment.new]) do |f| %>
+      <%= form_for([@booking, Comment.new]) do |f| %>
         <%= render partial: '/comments/form', locals: { f: f } %>
       <% end %>
       <% elsif current_user == nil %>
