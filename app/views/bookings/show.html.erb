@@ -47,6 +47,21 @@
 <% end %>
 <% end %>
 
+<li class="tab-header-and-content">
+  <a href="javascript:void(0)" class="tab-link">Comments (<%= @booking.root_comments.count %>)</a>
+  <div class="tab-content">
+    <% if current_user %>
+      <h4>Write a Comment:</h4>
+      <%= form_for([@comment, Comment.new]) do |f| %>
+        <%= render partial: '/comments/form', locals: { f: f } %>
+      <% end %>
+      <% elsif current_user == nil %>
+      <%= link_to "Login to comment", new_user_session_path %> |
+    <% end %>
+    <%= render partial:'comments/comment', :collection => @comments, :as => :comment %>    
+  </div>
+</li>
+
 
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
