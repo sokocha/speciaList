@@ -14,8 +14,17 @@ class BookingsController < ApplicationController
   end
 
   def show
-    respond_with(@booking)
+    @booking = Booking.find(params[:id])
+    @comments = @booking.comment_threads.order('created_at desc')
+    # @comment = Comment.build_from(@booking, current_user.id, "")
+    #@comment = current_user.comments.new
+
+    if current_user
+      @comment = Comment.build_from(@booking, current_user.id, "" )
+    end
+
   end
+
 
   def new
     @booking = Booking.new
