@@ -1,9 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+
+
+<table>
+  <thead>
+    <tr>
   <strong>Name:</strong>
   <%= @category.name %>
-</p>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category.listings.each do |listing| %>
+      <tr>
+        <td> <%= link_to listing.title, listing_path(listing)  %></td>
+        
+        <% if can? :edit, Listing %>
+        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+        <% end %>
+
+        <% if can? :destroy, Listing %>
+        <td><%= link_to 'Destroy', Listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <% if can? :create, Category  %>
 <%= link_to 'Edit', edit_category_path(@category) %> |

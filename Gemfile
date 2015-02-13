@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'acts_as_commentable_with_threading'
 gem 'cancancan'
 
 group :development, :test do
