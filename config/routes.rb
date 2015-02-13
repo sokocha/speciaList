@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :categories
 
-  resources :bookings
+  resources :bookings do
+    resources :comments, :only => [:create, :destroy, :new]
+  end
 
   resources :offers
 
