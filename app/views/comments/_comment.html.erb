@@ -1,10 +1,10 @@
 <div class = "comment">
   <div class = "comment-image">
-    <%= image_tag comment.user.user_image %>
+    <%= image_tag comment.user.avatar %>
   </div>
 
   <div class = "comment-content">
-    <h1><%= comment.user.try :username %></h1>
+    <h1><%= comment.user.try :first_name %></h1>
     <p><%= comment.body %></p>
   </div>
 </div>
