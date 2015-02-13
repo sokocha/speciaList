@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
   before_action :set_comment, except: [:new, :create]
   before_action :set_booking
+  authorize_resource :only => [:new, :create, :edit,:update,:destroy]
 
   def new
-    @comment = Comment.new
+    @comment = @booking.comments.new
   end
 
   def create
     @comment = Comment.build_from(@booking, current_user.id, params[:comment][:body])
+
     # @comment.title = params[:comment][:title] 
 
     if @comment.save

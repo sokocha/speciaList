@@ -28,6 +28,8 @@ class Ability
         user.contractor == nil || user.contractor.status != 'active' || offer.listing.status == "contracted"
       end
 
+
+
       can :destroy, Offer
       
       can :destroy, Listing do |listing|
@@ -51,8 +53,21 @@ class Ability
 
 # Can't create an offer if listing owner equals offers user
       
+      can :comment_on, Booking do |booking|
+        user.involved_in?(booking)
+      end
+
+      # cannot :create, Comment do |comment|
+      #   current_user != booking.listing.user || current_user != booking.offer.user
+      # end
 
 
+
+
+        
+        
+
+    
     
 
       can :update, Contractor do |contractor|

@@ -53,6 +53,9 @@ class User < ActiveRecord::Base
   end
 
   
+  def involved_in?(booking)
+    [booking.offer.try(:user), booking.listing.try(:user)].include?(self)
+  end
 
 
 
