@@ -46,6 +46,28 @@
 <% end %>
 <% end %>
 
+<div>
+  <% if can? :score_originality, @booking %>
+    <h4>How would you rate the other party?</h4>
+
+
+    <ul id="originality-buttons">
+      <% ['Terrible (1)', 'Not Good (2)', 'Average (3)', 'Enjoyable (4)', 'Amazing (5)' ].each_with_index do |text, index| %>
+        <li><%= form_for @booking, url: originality_rating_booking_path(@booking), method: :put, remote: true, html: { class: "originality_score_form" } do |f| %>
+            <%= tag(:input, :type => "hidden", :name => :vote_weight, :value => (index + 1) ) %>
+            <%= f.submit text, class: "submit_originality_rating" %>
+          <% end %></li>
+      <% end %>
+    </ul>
+    <% elsif current_user %>
+    <p>You can't vote on the originality of your own booking!</p>
+    <% else %>
+    <p>Sign in to vote on the originality of this booking</p>
+    <% end %>
+    <hr>
+    <h5>Current score: <span id="originality_score"> <%= render :template => "bookings/originalityscore" %></span></h5>
+</div>
+
 <li class="tab-header-and-content">
   <a href="javascript:void(0)" class="tab-link">Comments (<%= @booking.root_comments.count %>)</a>
   <div class="tab-content">

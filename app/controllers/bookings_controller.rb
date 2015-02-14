@@ -50,6 +50,14 @@ class BookingsController < ApplicationController
     respond_with(@booking)
   end
 
+ def score_originality
+   # rescue CanCan::AccessDenied
+   #    exception.message
+   @booking = Booking.find(params[:id])
+   @booking.liked_by current_user, :vote_scope => 'rate_originality', :vote_weight => params[:vote_weight]
+   render :template => "bookings/originalityscore", layout: false if request.xhr?
+ end
+
   private
     def set_booking
       @booking = Booking.find(params[:id])

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :bookings do
+    member do
+        put "originality_rating", to: "bookings#score_originality"
+      end
     resources :comments, :only => [:create, :destroy, :new]
   end
 
@@ -14,6 +17,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
   root to: "contractors#index"
+
+
 
   
 
