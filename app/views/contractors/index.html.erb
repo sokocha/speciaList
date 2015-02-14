@@ -17,7 +17,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
   </thead>
 
   <tbody>
-    <% @contractors.each do |contractor| %>
+    <% @contractors.where(status: 'active').each do |contractor| %>
       <tr>
         <td><%= contractor.wage %></td>
         <td><%= contractor.certified %></td>

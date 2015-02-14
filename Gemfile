@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'geocoder'
 gem 'acts_as_commentable_with_threading'
 gem 'cancancan'
