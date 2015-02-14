@@ -36,9 +36,7 @@ class Ability
         listing.try(:user_id) == user.id
       end
 
-      can :update, User do |u|
-        u.id == user.id
-      end
+      
 
       cannot :destroy, Contractor
       cannot :destroy, Category
@@ -72,7 +70,11 @@ class Ability
         
 
     
-    
+
+      can :update, User do |u|
+        u.id == user.id
+      end
+
 
       can :update, Contractor do |contractor|
         contractor.try(:user_id) == user.id
@@ -90,9 +92,8 @@ class Ability
         Listing.where(id: booking.listing_id).map {|listing| listing.user_id}.join(',').to_i == user.id
       end
 
-      can :update, User do |u|
-        u.id == user.id
-      end
+     
+
       cannot :update, Category
       
 

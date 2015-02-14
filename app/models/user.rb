@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :offers, through: :listings
   has_many :comments
+  
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
 
  # attr_accessor :phone_number
   
