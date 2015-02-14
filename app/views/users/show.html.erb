@@ -33,11 +33,12 @@
 <% end %>
 
 
-
+<% if can? :update, @user  %>
 <p>
   <strong>Phone number:</strong>
   <%= @user.phone_number %>
 </p>
+<% end %>
 
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
@@ -55,10 +56,12 @@
 <% end %>
 
 
+<% if can? :update, @user  %>
 <p>
   <strong>Address:</strong>
   <%= @user.address %>
 </p>
+<% end %>
 
 
 
