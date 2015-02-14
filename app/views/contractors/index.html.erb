@@ -1,9 +1,5 @@
-<h1>Listing contractors</h1>
-
-<% if can? :create, Contractor %>
-<% if current_user.contractor.try(:status) == nil  %>
-<%= link_to 'Become a Contractor!', new_contractor_path %>
-<% end %>
+<% if can? :create, Listing %>
+To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <% end %>
 <br/>
 <br/>

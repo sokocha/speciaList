@@ -1,7 +1,7 @@
-<h1>Listings</h1>
-
-<% if can? :create, Listing %>
-<%= link_to 'New Listing', new_listing_path %>
+<% if can? :create, Contractor %>
+  <% if current_user.contractor.try(:status) == nil  %>
+    Looking for work? Click here to <%= link_to 'Become a Contractor!', new_contractor_path %>
+  <% end %>
 <% end %>
 
 <table>
