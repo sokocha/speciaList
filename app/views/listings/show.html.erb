@@ -31,15 +31,6 @@
   <%= @listing.status %>
 </p>
 
-<p>
-  <strong>Client:</strong>
-  <%= @listing.user_id %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @listing.category_id %>
-</p>
 
 
 <% if can? :create, @listing.offers.new %>
