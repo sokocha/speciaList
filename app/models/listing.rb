@@ -18,6 +18,8 @@ class Listing < ActiveRecord::Base
   validates :title, length:{minimum: 3 }
   validates :budget, :numericality => { :greater_than_or_equal_to => 1 }
   validates :description, length:{minimum: 75}
+
+  
   
 
 
