@@ -2,13 +2,20 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @booking.listing.title %> by <%= link_to @booking.listing.user.first_name, user_path(@booking.listing.user)  %> 
+  <%= @booking.listing.title %> by <%= link_to @booking.listing.user.first_name, user_path(@booking.listing.user)  %>
+  <% if current_user == @booking.offer.user %> 
+  Call me on <%= @booking.listing.user.phone_number %>
+  <% end %> 
 </p>
 
 <p>
   <strong>Contractor:</strong>
-  <%= link_to @booking.offer.user.first_name, user_path(@booking.offer.user) %>
+  <%= link_to @booking.offer.user.first_name, user_path(@booking.offer.user) %>. 
+ <% if current_user == @booking.listing.user %> 
+ Call me on <%= @booking.offer.user.phone_number %>
+ <% end %>
 </p>
+
 
 <p>
   <strong>Budget ₦:</strong>
@@ -26,19 +33,6 @@
   <%= @booking.listing.try(:image) %>
 </p>
 <% end %>
-
-
-
-
-<p>
-  <strong>Listing:</strong>
-  <%= @booking.listing_id %>
-</p>
-
-<p>
-  <strong>Offer:</strong>
-  <%= @booking.offer_id %>
-</p>
 
 <p>
   <strong>Status:</strong>
