@@ -7,7 +7,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-    @available_jobs = @listings.where(status: 'uncontracted')
     respond_with(@listings)
   end
 

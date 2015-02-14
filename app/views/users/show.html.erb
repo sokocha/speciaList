@@ -82,6 +82,10 @@
 <% end %>
 <% end %>
 
+<% if can? :edit, @user%>
+<td><%= link_to 'Edit Contractor Profile', edit_contractor_path(@user.contractor) %></td>
+<% end %>
+
 <% if @user.contractor.try(:status) != 'active' %>
 <%= form_for @user.contractor, method: :patch do |f| %>
   <%= f.hidden_field :status, :value => 'active' -%>

@@ -1,9 +1,13 @@
-<h1>Listing categories</h1>
+<% if can? :create, Listing %>
+To have workers bid on your project, Click <%= link_to 'Here', new_listing_path %>
+or
+<% end %>
+<p>Find workers by category:</p>
+
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,7 +15,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= link_to category.name, category_path(category) %></td>
+        <td><%= link_to category.name, contractors_path() %></td>
         
         <% if can? :edit, Category %>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>

@@ -10,9 +10,12 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :wage %><br>
+    <%= f.label :category_id, 'Type of Work' %><br>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="field">
+    <%= f.label :wage, 'Hourly Salary' %><br>
     <%= f.number_field :wage %>
   </div>
   <div class="field">
@@ -24,10 +27,7 @@
     <%= f.check_box :verified %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="field">
-    <%= f.label :category_id, 'Category' %><br>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
-  </div>
+
   <div class="actions">
     <%= f.submit "Make me a Contractor!" %>
   </div>

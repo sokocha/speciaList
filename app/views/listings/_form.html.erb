@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :category_id, 'Type of Work' %><br>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+  </div>
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -27,15 +30,8 @@
     <%= f.label :image %><br>
     <%= f.text_field :image %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.hidden_field :status %>
-  </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="field">
-    <%= f.label :category_id, 'Category' %><br>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
