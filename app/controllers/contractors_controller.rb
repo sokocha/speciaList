@@ -31,7 +31,8 @@ class ContractorsController < ApplicationController
 
   def update
     @contractor.update(contractor_params)
-    respond_with(@contractor)
+    redirect_to(user_path(@contractor.user))
+    
   end
 
   def destroy
