@@ -28,7 +28,7 @@ class OffersController < ApplicationController
   def update
     @offer.update(offer_params)
     # respond_with(@offer)
-    redirect_to(listing_path(@offer.listing_id))
+    redirect_to(booking_path(@offer.listing.booking))
   end
 
   def destroy
