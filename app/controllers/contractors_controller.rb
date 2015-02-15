@@ -6,9 +6,12 @@ class ContractorsController < ApplicationController
   respond_to :html
 
   def index
-    @contractors = Contractor.all
-    
-    respond_with(@contractors)
+    if params[:tag]
+      @contractors = Contractor.tagged_with(params[:tag])
+    else
+      @contractors = Contractor.all
+    end
+    # respond_with(@contractors)
   end
 
   def show
@@ -46,6 +49,6 @@ class ContractorsController < ApplicationController
     end
 
     def contractor_params
-      params.require(:contractor).permit(:wage, :certified, :user_id, :category_id, :verified, :status)
+      params.require(:contractor).permit(:wage, :certified, :user_id, :category_id, :verified, :status,:tag_list)
     end
 end

@@ -9,4 +9,6 @@ class Contractor < ActiveRecord::Base
 
 
   validates :wage, :numericality => { :greater_than_or_equal_to => 1 }
+  acts_as_taggable
+
 end

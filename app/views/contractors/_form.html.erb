@@ -19,6 +19,11 @@
     <%= f.number_field :wage %>
   </div>
   <div class="field">
+    <%= f.label :tag_list, "Tags separated by commas"  %>
+    <%= f.text_field :tag_list %>
+  </div>
+
+  <div class="field">
     <%= f.label :certified %><br>
     <%= f.check_box :certified %>
   </div>

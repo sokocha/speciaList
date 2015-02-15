@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :comments, :only => [:create, :destroy, :new]
   end
 
+  get 'tags/:tag', to: 'contractors#index', as: :tag
+
   resources :offers
 
   resources :listings

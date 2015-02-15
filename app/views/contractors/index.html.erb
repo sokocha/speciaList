@@ -4,6 +4,12 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <br/>
 <br/>
 
+<div id="tag_cloud">
+  <% tag_cloud Contractor.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class  %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -55,6 +61,8 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
             <%= current_user.distance_from(contractor.user).round(2) %> miles away
           </td> 
         <% end %>
+
+        <td>Tags: <%= raw contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
 
 
 
