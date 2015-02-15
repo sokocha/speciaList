@@ -7,7 +7,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <table>
   <thead>
     <tr>
-      <th>Hourly Wage ₦</th>
+      <th>Hourly Wage</th>
       <th>Certified</th>
       <th>Verified</th>
       <th>User</th>
@@ -19,9 +19,23 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
   <tbody>
     <% @contractors.where(status: 'active').each do |contractor| %>
       <tr>
-        <td><%= contractor.wage %></td>
-        <td><%= contractor.certified %></td>
-        <td><%= contractor.verified %></td>
+        <td>₦<%= contractor.wage %></td>
+
+        <% if contractor.status == 'active' %>
+          <% if contractor.try(:certified) == true %>
+          <td><%= image_tag 'green_tick.png' %></td>
+          <% else %>
+          <td><%= image_tag 'red_x.png' %></td> 
+          <% end %>
+        <% end %>
+
+        <% if contractor.status == 'active' %>
+          <% if contractor.try(:verified) == true %>
+          <td><%= image_tag 'green_tick.png' %></td>
+          <% else %>
+          <td><%= image_tag 'red_x.png' %></td> 
+          <% end %>
+        <% end %>
 
     
         <td>  <%= link_to contractor.user.first_name, user_path(contractor.user)  %></td>

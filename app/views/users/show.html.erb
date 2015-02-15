@@ -44,14 +44,23 @@
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Certification</strong>
-  <%= @user.try(:contractor).try(:certified) %>
+  <% if @user.try(:contractor).try(:certified) == true %>
+  <%= image_tag 'green_tick.png' %>
+  <% else %>
+  <%= image_tag 'red_x.png' %>
+  <% end %>
 </p>
+
 <% end %>
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Verified by SpeciaList™</strong>
-  <%= @user.try(:contractor).try(:verified) %>
+    <% if @user.try(:contractor).try(:verified) == true %>
+    <%= image_tag 'green_tick.png' %>
+    <% else %>
+    <%= image_tag 'red_x.png' %>
+    <% end %>
 </p>
 <% end %>
 

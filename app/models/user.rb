@@ -64,6 +64,8 @@ class User < ActiveRecord::Base
     [booking.offer.try(:user), booking.listing.try(:user)].include?(self)
   end
 
+ 
+
 
 
 end
