@@ -27,17 +27,20 @@
   <%= @booking.listing.description %>
 </p>
 
-<% if @booking.listing.image %>
-<p>
-  <strong>Image:</strong>
-  <%= @booking.listing.try(:image) %>
-</p>
-<% end %>
-
 <p>
   <strong>Status:</strong>
   <%= @booking.status %>
 </p>
+
+<% if @booking.listing.listing_image %>
+<p>
+  <%= image_tag @booking.listing.try(:listing_image).url %>
+</p>
+<% end %>
+
+
+
+
 
 <% if can? :update, @booking, %>
   <%= form_for :booking, url: booking_path(@booking), method: :patch, data: {confirm: "All payments released are final. Press Ok to release money"} do |f| %>
