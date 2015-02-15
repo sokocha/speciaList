@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rmagick'
 gem 'carrierwave', '0.9.0'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'geocoder'

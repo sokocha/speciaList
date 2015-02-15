@@ -19,7 +19,7 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= image_tag user.user_avatar.url, class: "user-avatar" %></td>
+        <td><%= link_to image_tag(user.try(:user_avatar).thumb.url), user.user_avatar.detail.url %></td>
         <td><%= user.address %></td>
         <td><%= user.latitude %></td>
         <td><%= user.longitude %></td>
