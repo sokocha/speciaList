@@ -74,7 +74,7 @@
 
 
 <p>
-<% if current_user.geocoded? %>
+<% if current_user.try(:geocoded?) %>
 <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
 <% end %>
 </p>

@@ -1,9 +1,8 @@
-<h1>Bookings</h1>
-
 <table>
   <thead>
+    <tr><h3>Active Projects</h3></tr>
     <tr>
-      <th>Tile</th>
+      <th>Title</th>
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
@@ -13,6 +12,7 @@
 
   <tbody>
     <% @bookings.each do |booking| %>
+    <% if booking.status == 'active' %>
       <tr>
         <td><%= link_to booking.listing.title, booking_path(booking) %></td>
         <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
@@ -28,8 +28,48 @@
         <% end %>
       </tr>
     <% end %>
+    <% end %>
   </tbody>
 </table>
+
+
+
+<table>
+  <thead>
+    <tr><h3>Completed Projects</h3></tr>
+    <tr>
+      <th>Title</th>
+      <th>Contractor</th>
+      <th>Winning Bid</th>
+      <th>Status</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+    <% if booking.status == 'complete' %>
+      <tr>
+        <td><%= link_to booking.listing.title, booking_path(booking) %></td>
+        <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
+        <td>₦<%= link_to booking.offer.price , booking_path(booking)  %></td>
+        <td><%= booking.status %></td>
+        
+        <% if can? :edit, booking %>
+        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <% end %>
+        
+        <% if can? :destroy, booking %>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+  
 
 <br>
 
