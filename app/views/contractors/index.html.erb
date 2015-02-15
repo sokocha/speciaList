@@ -12,7 +12,8 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
       <th>Verified</th>
       <th>User</th>
       <th>Category</th>
-      <th colspan="5"></th>
+      <th>Distance</th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -39,14 +40,20 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 
     
         <td>  <%= link_to contractor.user.first_name, user_path(contractor.user)  %></td>
-       
 
+      
         <% if contractor.category != nil %>
         <td>
           <%= link_to contractor.category.name, category_path(contractor.category) %>
         </td>
         <% else %>
         <td> Not Listed</td>
+        <% end %>
+
+        <% if current_user.try(:geocoded?) %> 
+          <td>
+            <%= current_user.distance_from(contractor.user).round(2) %> miles away
+          </td> 
         <% end %>
 
 
