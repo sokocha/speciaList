@@ -30,6 +30,8 @@
 </p>
 <% end %>
 
+<td> <strong>Expertise:</strong> <%= raw @user.contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
+
 
 <% if can? :update, @user  %>
 <p>
@@ -74,7 +76,7 @@
 
 
 <p>
-<% if current_user.try(:geocoded?) %>
+<% if current_user.try(:geocoded?) && current_user!=@user%>
 <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
 <% end %>
 </p>

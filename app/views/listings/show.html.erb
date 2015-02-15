@@ -41,8 +41,8 @@
 
 <% if can? :create, @listing.offers.new %>
 <%= form_for Offer.new do |offer_form|%>
-  Price : <%= offer_form.number_field :price %>
-  Total Hours: <%= offer_form.number_field :hours %>
+  Price : ₦<%= offer_form.number_field :price %>
+  Total Hours: <%= offer_form.number_field :hours, :class => 'text_field', :step => 'any' %>
   <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
   <%= offer_form.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
@@ -56,18 +56,23 @@
   <thead>
     <tr>
       <th>Price</th>
-      <th>Status</th>
-      <th>User</th>
+      <th>Duration</th>
+      <th>Contractor</th>
+      <th>Distance</th>
       <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
     <% @offers.each do |offer| %>
       <tr>
-        <td><%= offer.price %></td>
-        <td><%= offer.hours %></td>
-        <td> <%= offer.user_id %></td>
+        <td>₦<%= offer.price %></td>
+        <td><%= offer.hours %> Hours</td>
         <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
+        <td>
+          <% if current_user.try(:geocoded?) && current_user!=offer.user%>
+            <%= current_user.distance_from(offer.user).round(2) %> miles 
+          <% end %>
+        </td>
         <td><%= link_to 'Show', offer_path %></td>
 
          
