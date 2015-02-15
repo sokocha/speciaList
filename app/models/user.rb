@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_voter
+  mount_uploader :user_avatar, UserAvatarUploader
   has_one :contractor, dependent: :destroy
   has_many :listings
   has_many :offers, through: :listings

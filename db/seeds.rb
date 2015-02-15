@@ -12,11 +12,11 @@ Booking.delete_all
 Category.delete_all
 Listing.delete_all
 
-admin_user = User.create!(first_name: 'Sadiq', last_name: 'Okocha', address: '8 alhaji kanike close', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin", avatar: 'http://organicthemes.com/demo/profile/files/2012/12/profile_img.png')
+admin_user = User.create!(first_name: 'Sadiq', last_name: 'Okocha', address: '8 alhaji kanike close', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin", user_avatar: 'http://organicthemes.com/demo/profile/files/2012/12/profile_img.png')
 
-normal_user1 = User.create!(first_name: 'James', last_name: 'fajimolu', address: '12 sanusfi fafunwa',phone_number: '08188699925',email: "user@specialist.com", password: 'password', role: "user", avatar: 'http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg' )
+normal_user1 = User.create!(first_name: 'James', last_name: 'fajimolu', address: '12 sanusfi fafunwa',phone_number: '08188699925',email: "user@specialist.com", password: 'password', role: "user", user_avatar: 'http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg' )
 
-normal_user2 = User.create!(first_name: 'Chudi', last_name: 'Ngonadi', address: '33 alfred rewane',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user", avatar: 'http://dev.sol-technology.com.au/QUT/images/profile/tempProfile1.jpg')
+normal_user2 = User.create!(first_name: 'Chudi', last_name: 'Ngonadi', address: '33 alfred rewane',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user", user_avatar: 'http://dev.sol-technology.com.au/QUT/images/profile/tempProfile1.jpg')
 
 contractor_admin = Contractor.create!(user_id: admin_user.id, wage: 235, category_id: 1)
 contractor_1 = Contractor.create!(user_id: normal_user1.id, wage: 2114, category_id: 2)
