@@ -18,8 +18,8 @@
 
 
 <p>
-  <strong>Budget ₦:</strong>
-  <%= @booking.listing.budget %>
+  <strong>Agreed Price ₦:</strong>
+  <%= @booking.offer.price %>
 </p>
 
 <p>
@@ -30,6 +30,11 @@
 <p>
   <strong>Status:</strong>
   <%= @booking.status %>
+</p>
+
+<p>
+  <strong>Category: </strong>
+  <%= link_to @booking.listing.category.name, category_path(@booking.listing.category)  %>
 </p>
 
 <% if @booking.listing.listing_image %>

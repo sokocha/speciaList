@@ -21,13 +21,20 @@
   <%= @listing.description %>
 </p>
 
+<% if @listing.listing_image == nil %>
 <p>
   <%= image_tag @listing.listing_image.url %>
 </p>
+<% end %>
 
 <p>
   <strong>Status:</strong>
   <%= @listing.status %>
+</p>
+
+<p>
+  <strong>Category: </strong>
+  <%= link_to @listing.category.name, category_path(@listing.category)  %>
 </p>
 
 

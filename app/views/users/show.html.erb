@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
   <%= @user.first_name %> <%= @user.last_name %>
 </p>
 
 <p>
-  <strong>Avatar:</strong>
   <%= link_to image_tag(@user.user_avatar.thumb.url), @user.user_avatar.detail.url %>
 </p>
 
@@ -105,7 +103,7 @@
 <% end %>
 
 <table>
-  <h2>Active Listings</h2>
+  <h2>My Active Listings</h2>
   <thead>
     <tr>
       <th>Title</th>
