@@ -1,7 +1,7 @@
 require 'twilio-ruby'
  
 class TwilioController < ApplicationController
-  # include Webhookable
+  include Webhookable
  
   after_filter :set_header
  
