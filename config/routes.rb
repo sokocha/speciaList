@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   post 'notifications/notify' => 'notifications#notify'
 
-  post 'twilio/status' => 'twilio#status'
+  post 'twilio/sms' => 'twilio#sms'
+
+
 
 
 
