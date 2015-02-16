@@ -45,9 +45,9 @@
 <p>
   <strong>Certification</strong>
   <% if @user.try(:contractor).try(:certified) == true %>
-  <%= image_tag 'green_tick.png' %>
+    <%= image_tag 'green_tick.png' %>
   <% else %>
-  <%= image_tag 'red_x.png' %>
+    <%= image_tag 'red_x.png' %>
   <% end %>
 </p>
 
@@ -57,9 +57,9 @@
 <p>
   <strong>Verified by SpeciaList™</strong>
     <% if @user.try(:contractor).try(:verified) == true %>
-    <%= image_tag 'green_tick.png' %>
+      <%= image_tag 'green_tick.png' %>
     <% else %>
-    <%= image_tag 'red_x.png' %>
+      <%= image_tag 'red_x.png' %>
     <% end %>
 </p>
 <% end %>
@@ -77,30 +77,39 @@
 
 <p>
 <% if current_user.try(:geocoded?) && current_user!=@user%>
-<strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
+  <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
 <% end %>
 </p>
+
 <br/>
 
 <% if @user.contractor != nil %>
-<% if can? :update, @user %>
-<% if @user.contractor.try(:status) == 'active' %>
-<%= form_for @user.contractor, method: :patch do |f| %>
-  <%= f.hidden_field :status, :value => nil -%>
-  <%= f.submit 'Disable Contractor Profile' %>
-<% end %>
+  <% if can? :update, @user %>
+    <% if @user.contractor.try(:status) == 'active' %>
+      <%= form_for @user.contractor, method: :patch do |f| %>
+      <%= f.hidden_field :status, :value => nil -%>
+      <%= f.submit 'Disable Contractor Profile' %>
+  <% end %>
 <% end %>
 
-<% if can? :edit, @user%>
-<td><%= link_to 'Edit Contractor Profile', edit_contractor_path(@user.contractor) %></td>
+
+<% if can? :update, @user %>
+  <%= link_to 'Edit User Profile', edit_user_path(@user) %> |
 <% end %>
+
+<% if can? :update, @user%>
+  <td><%= link_to 'Edit Contractor Profile', edit_contractor_path(@user.contractor) %></td>
+<% end %>
+
+
 
 <% if @user.contractor.try(:status) != 'active' %>
-<%= form_for @user.contractor, method: :patch do |f| %>
-  <%= f.hidden_field :status, :value => 'active' -%>
-  <%= f.submit 'Enable Contractor Profile' %>
+  <%= form_for @user.contractor, method: :patch do |f| %>
+    <%= f.hidden_field :status, :value => 'active' -%>
+    <%= f.submit 'Enable Contractor Profile' %>
+  <% end %>
 <% end %>
-<% end %>
+
 <% end %>
 <% end %>
 
@@ -199,8 +208,6 @@
 </table>
 
 
-<% if can? :update, @user %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
 
-<%= link_to 'Back', users_path %>
+
+

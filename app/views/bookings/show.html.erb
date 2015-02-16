@@ -46,13 +46,21 @@
 
 
 
-
+<div id="booking_buttons">
 <% if can? :update, @booking, %>
   <%= form_for :booking, url: booking_path(@booking), method: :patch, data: {confirm: "All payments released are final. Press Ok to release money"} do |f| %>
       <%= f.hidden_field :status, :value => 'complete' %>
       <%= f.submit 'Make Final Payment' %>
 <% end %>
 <% end %>
+
+<% if can? :update, @booking, %>
+  <%= form_for :booking, url: booking_path(@booking), method: :patch, data: {confirm: "Cancelling the project results in a 5% procession fee and may affect your ratings as a Client"} do |f| %>
+      <%= f.hidden_field :status, :value => 'cancelled' %>
+      <%= f.submit 'Cancel Project' %>
+<% end %>
+<% end %>
+</div>
 
 <div>
   <% if can? :score_originality, @booking %>

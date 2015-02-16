@@ -40,15 +40,15 @@
 
 
 <% if can? :create, @listing.offers.new %>
-<%= form_for Offer.new do |offer_form|%>
-  Price : ₦<%= offer_form.number_field :price %>
-  Total Hours: <%= offer_form.number_field :hours, :class => 'text_field', :step => 'any' %>
+  <%= form_for Offer.new do |offer_form|%>
+    Price : ₦<%= offer_form.number_field :price %>
+
   <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
   <%= offer_form.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
     <%= offer_form.submit %>
   </div>
-<% end %>
+  <% end %>
 <% end %>
 
 
@@ -56,26 +56,22 @@
   <thead>
     <tr>
       <th>Price</th>
-      <th>Duration</th>
       <th>Contractor</th>
       <th>Distance</th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @offers.each do |offer| %>
       <tr>
         <td>₦<%= offer.price %></td>
-        <td><%= offer.hours %> Hours</td>
         <td><%= User.where(id: offer.user_id).map {|user| user.first_name}.join(",") %></td>
         <td>
-          <% if current_user.try(:geocoded?) && current_user!=offer.user%>
+          <% if current_user.try(:geocoded?)%>
             <%= current_user.distance_from(offer.user).round(2) %> miles 
           <% end %>
         </td>
-        <td><%= link_to 'Show', offer_path %></td>
 
-         
         <% if can? :update, @listing %>
         <td>
           <%= form_for offer, method: :patch do |f| -%>

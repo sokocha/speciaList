@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'twilio-ruby'
 gem 'acts-as-taggable-on'
 gem 'rmagick'
 gem 'carrierwave', '0.9.0'

@@ -13,6 +13,6 @@
  *= require_tree .
  *= require_self
  */
- @import "contractors.css.scss";
 
+@import 'contractors.css.scss'
 

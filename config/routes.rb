@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   resources :users
   root to: "contractors#index"
 
+  post 'notifications/notify' => 'notifications#notify'
+
+  post 'twilio/status' => 'twilio#status'
+
+
+
 
 
   

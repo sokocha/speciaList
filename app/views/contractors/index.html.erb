@@ -48,7 +48,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
         <% end %>
 
     
-        <td>  <%= link_to contractor.user.first_name, user_path(contractor.user)  %></td>
+        <td>  <%= link_to contractor.try(:user).try(:first_name), user_path(contractor.try(:user))  %></td>
 
       
         <% if contractor.category != nil %>

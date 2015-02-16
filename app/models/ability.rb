@@ -83,6 +83,8 @@ class Ability
         contractor.try(:user_id) == user.id
       end
 
+      can :update, :contractors, [:wage]
+
       can :update, Listing do |listing|
         listing.try(:user) == user
       end
