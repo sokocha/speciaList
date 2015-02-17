@@ -34,12 +34,13 @@ class TwilioController < ApplicationController
       Offer.create(listing_id: job_type_id, price: price_or_response, user_id: User.find_by(phone_number: sender).id)
     end
 
-    if job_type == 'offer' && price_or_response=='yes'
+    if job_type == 'offer' && price_or_response=='yes' && sender == Offer.find_by(id: job_type_id).listing.user.phone_number
+     
       new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id: job_type_id).listing_id)
     end
 
     if job_type == 'booking' && price_or_response == 'complete' && sender == Booking.find_by(id: job_type_id).listing.user.phone_number
-      
+
       Booking.find_by(id: job_type_id).update(status: price_or_response)
 
     elsif job_type == 'booking' && price_or_response == 'cancelled'
