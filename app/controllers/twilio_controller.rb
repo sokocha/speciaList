@@ -6,13 +6,62 @@ class TwilioController < ApplicationController
   after_filter :set_header
  
   skip_before_action :verify_authenticity_token
+
  
   def sms
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Hey there. Congrats on integrating Twilio into your Rails 4 app.', :voice => 'alice'
-         r.Play 'http://linode.rabasa.com/cantina.mp3'
+    receiver = params['To']
+    sender = params['From']
+
+    body = params['Body']
+    body_array = body.split('#')
+
+    identification = body_array.first
+    price_or_response       = body_array.last
+
+    id_array = identification.scan(/\d+|\D+/)
+
+    job_type     = id_array.first
+    job_type_id  = id_array.last
+    
+
+
+    # alter receiver phone number to make it from +44 to 07
+    if sender.slice!(0..2) == "+44"
+      sender = sender.insert(0,'0')
+
+
+
+    if job_type == 'listing'
+      Offer.create(listing_id: job_type_id, price: price_or_response, user_id: User.find_by(phone_number: sender).id)
     end
- 
-    render_twiml response
+
+    if job_type == 'offer' && price_or_response=='yes'
+      new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id: job_type_id).listing_id)
+    end
+
+    if job_type == 'booking' && price_or_response == 'complete'
+      Booking.find_by(id: job_type_id).update(status: price_or_response)
+    end
+
+
+    # ASKS CLIENTS IF THEY ACCEPT THE CONTRACTOR'S COUNTER-OFFER
+    # if body contains 'yes'
+    #   Booking.create(offer_id: ,listing_id: )
+    # end
+
+    # ASKS CLIENT'S IF THEY WOULD LIKE TO COMPLETE THE BOOKING
+    # if body contains 'pay'
+    #   @booking.update(status: 'complete')
+    # elsif body contains 'decline'
+    #   @booking.update(status: 'cancelled')
+    # end
+
   end
+
+end
+        
+
+  
+
+
 end

@@ -30,7 +30,9 @@
 </p>
 <% end %>
 
+<% if @user.contractor %>
 <td> <strong>Expertise:</strong> <%= raw @user.contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
+<% end %>
 
 
 <% if can? :update, @user  %>

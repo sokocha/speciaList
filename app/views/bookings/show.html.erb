@@ -49,7 +49,7 @@
 <div id="booking_buttons">
 <% if can? :update, @booking, %>
   <%= form_for :booking, url: booking_path(@booking), method: :patch, data: {confirm: "All payments released are final. Press Ok to release money"} do |f| %>
-      <%= f.hidden_field :status, :value => 'complete' %>
+      <%= f.hidden_field :status, :value => "complete" %>
       <%= f.submit 'Make Final Payment' %>
 <% end %>
 <% end %>

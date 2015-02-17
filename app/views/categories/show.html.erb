@@ -26,7 +26,9 @@
           <td><%= listing.image %></td>
           <td><%= listing.status %></td>
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
-          <td><%= current_user.distance_from(listing.user).round(2) %> miles</td>
+          <% if current_user.distance_from(listing.try(:user)) != nil %>
+          <td><%= current_user.distance_from(listing.try(:user)).round(2) %> miles</td>
+          <% end %>
          
           <% if can? :edit, listing %>
           <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
