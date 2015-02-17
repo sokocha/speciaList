@@ -41,7 +41,7 @@ class Booking < ActiveRecord::Base
     booking_members.each do |member|
     # binding.pry
     message = client.messages.create from: '+441706300252', to: member.phone_number, body: "Well Done! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name}, meet your #{self.listing.category.name} #{self.offer.user.first_name} #{self.offer.user.last_name}. Both parties have come to agreement at ₦#{self.offer.price}. Enjoy!!! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name} when you are satisfied with the work, reply this message with the following format booking#{self.id}#complete. "
-  end
+    end
   end
 
   def send_out_sms_complete

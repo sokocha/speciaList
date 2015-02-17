@@ -12,7 +12,7 @@ class TwilioController < ApplicationController
     receiver = params['To']
     sender = params['From']
 
-    body = params['Body']
+    body = params['Body'].downcase
     body_array = body.split('#')
 
     identification = body_array.first
@@ -30,7 +30,6 @@ class TwilioController < ApplicationController
       sender = sender.insert(0,'0')
 
 
-
     if job_type == 'listing'
       Offer.create(listing_id: job_type_id, price: price_or_response, user_id: User.find_by(phone_number: sender).id)
     end
@@ -39,22 +38,14 @@ class TwilioController < ApplicationController
       new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id: job_type_id).listing_id)
     end
 
-    if job_type == 'booking' && price_or_response == 'complete'
+    if job_type == 'booking' && price_or_response == 'complete' && sender == Booking.find_by(id: job_type_id).listing.user.phone_number
+      
+      Booking.find_by(id: job_type_id).update(status: price_or_response)
+
+    elsif job_type == 'booking' && price_or_response == 'cancelled'
       Booking.find_by(id: job_type_id).update(status: price_or_response)
     end
 
-
-    # ASKS CLIENTS IF THEY ACCEPT THE CONTRACTOR'S COUNTER-OFFER
-    # if body contains 'yes'
-    #   Booking.create(offer_id: ,listing_id: )
-    # end
-
-    # ASKS CLIENT'S IF THEY WOULD LIKE TO COMPLETE THE BOOKING
-    # if body contains 'pay'
-    #   @booking.update(status: 'complete')
-    # elsif body contains 'decline'
-    #   @booking.update(status: 'cancelled')
-    # end
 
   end
 
