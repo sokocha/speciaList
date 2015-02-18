@@ -6,9 +6,11 @@
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
-      <% if current_user.role == 'admin' %>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <% if can? :edit, Booking %>
+        <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, Booking %>
+        <th>Destroy</th>
       <% end %>
       
     </tr>
@@ -23,9 +25,12 @@
         <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
         <td><span class="badge-alert"><%= booking.status %></span></td>
         
+        <td>
         <% if can? :edit, booking %>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <%= link_to 'Edit', edit_booking_path(booking) %>
         <% end %>
+        </td>
+        
         
         <% if can? :destroy, booking %>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>

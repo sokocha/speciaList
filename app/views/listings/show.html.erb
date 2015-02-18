@@ -22,12 +22,6 @@
   <%= @listing.description %>
 </p>
 
-<% if @listing.listing_image != nil %>
-<p>
-  <%= image_tag @listing.listing_image.url %>
-</p>
-<% end %>
-
 <p>
   <strong>Status:</strong>
   <%= @listing.status %>
@@ -37,10 +31,18 @@
   <strong>Category: </strong>
   <%= link_to @listing.category.name, category_path(@listing.category)  %>
 </p>
+
+<% if @listing.listing_image != nil %>
+<p>
+  <%= image_tag @listing.listing_image.url %>
+</p>
+<% end %>
+
+
 </div>
 
 
-<% if can? :create, @listing.offers.new %>
+<% if can? :create, Offer.new %>
   <%= form_for Offer.new do |offer_form|%>
     Price : ₦<%= offer_form.number_field :price %>
 
@@ -62,6 +64,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
+
   <tbody>
     <% @offers.each do |offer| %>
       <tr>
@@ -72,6 +75,7 @@
             <%= current_user.distance_from(offer.user).round(2) %> miles 
           <% end %>
         </td>
+
 
         <% if can? :update, @listing %>
         <td>
@@ -87,6 +91,7 @@
       </tr>
     <% end %>
   </tbody>
+
 </table>
 
 

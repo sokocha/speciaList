@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     vote_weights.sum
   end
   def vote_weight_avg
-    vote_weight_sum.to_f / vote_weights.count
+    (vote_weight_sum.to_f / vote_weights.count).round(2)
   end
 
 

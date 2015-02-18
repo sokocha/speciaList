@@ -60,8 +60,10 @@ class Ability
       end
 
       can :score_originality, Booking do |booking|
-        booking.try(:user_id) == user.id || booking.listing.try(:user_id) == user.id
+        booking.listing.try(:user_id) == user.id
       end
+
+      
 
 
 
