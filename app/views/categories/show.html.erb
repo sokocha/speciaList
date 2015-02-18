@@ -24,7 +24,7 @@
           <td> <%= link_to listing.title , listing_path(listing)  %> </td>
           <td>₦<%= listing.budget %></td>
           <td><%= listing.image %></td>
-          <td><%= listing.status %></td>
+          <td><span class="badge-alert"><%= listing.status %></span></td>
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
           <% if current_user %>
           <td><%= current_user.distance_from(listing.try(:user)).round(2) %> miles</td>

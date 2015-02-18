@@ -18,13 +18,17 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <br>
 <br>
 
+
+
 <%= search_form_for @q, url: request.path do |f| %>
   <p>
     <%= f.label :tags_name_cont %>
     <%= f.text_field :tags_name_cont %>
   </p>
   <p>
+
     <%= f.submit %>
+
   </p>
 <% end %>
 
@@ -36,9 +40,12 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
       <th><%= sort_link @q, :verified %></th>
       <th>User</th>
       <th>Category</th>
+      <% if current_user %>
       <th><%= sort_link @q, :distance %></th>
       <th>Expertise</th>
+
       <th colspan="7"></th>
+      <% end %>
       
     </tr>
   </thead>
@@ -46,7 +53,13 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
   <tbody>
     <% @contractors.where(status: 'active').each do |contractor| %>
       <tr>
-        <td>₦<%= contractor.wage %></td>
+        <td>
+          <div>
+            <span class="badge-success">₦<%= contractor.wage %></span>
+          </div>
+        </td>
+
+        
 
         <% if contractor.status == 'active' %>
           <% if contractor.try(:certified) == true %>
@@ -84,7 +97,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
       <% if current_user %>
         <% if current_user.try(:geocoded?) %> 
           <td>
-            <%= current_user.distance_from(contractor.user).round(3) %> miles away
+            <span class="badge-alert"><%= current_user.distance_from(contractor.user).round(2) %></span> 
           </td> 
         <% end %>
 
@@ -104,7 +117,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
     <% end %>
 
 
-    
+
 
 
 

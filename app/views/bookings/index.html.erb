@@ -6,7 +6,7 @@
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
-      <th colspan="4"></th>
+      
     </tr>
   </thead>
 
@@ -16,8 +16,8 @@
       <tr>
         <td><%= link_to booking.listing.title, booking_path(booking) %></td>
         <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
-        <td>₦<%= link_to booking.offer.price , booking_path(booking)  %></td>
-        <td><%= booking.status %></td>
+        <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
+        <td><span class="badge-alert"><%= booking.status %></span></td>
         
         <% if can? :edit, booking %>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
@@ -42,7 +42,7 @@
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
-      <th colspan="4"></th>
+      
     </tr>
   </thead>
 
@@ -52,8 +52,8 @@
       <tr>
         <td><%= link_to booking.listing.title, booking_path(booking) %></td>
         <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
-        <td>₦<%= link_to booking.offer.price , booking_path(booking)  %></td>
-        <td><%= booking.status %></td>
+        <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
+        <td><span class="badge-success"><%= booking.status %></span></td>
         
         <% if can? :edit, booking %>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
