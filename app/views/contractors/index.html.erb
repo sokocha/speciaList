@@ -11,6 +11,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 </div>
 <br>
 <br>
+
 <%= search_form_for @q, url: request.path do |f| %>
   <p>
     <%= f.label :tags_name_cont %>
@@ -24,14 +25,15 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <table>
   <thead>
     <tr>
-      <th>Hourly Wage</th>
-      <th>Certified</th>
-      <th>Verified</th>
+      <th><%= sort_link @q, :wage %></th>
+      <th><%= sort_link @q, :certified %></th>
+      <th><%= sort_link @q, :verified %></th>
       <th>User</th>
       <th>Category</th>
-      <th>Distance</th>
+      <th><%= sort_link @q, :distance %></th>
       <th>Expertise</th>
       <th colspan="7"></th>
+      
     </tr>
   </thead>
 
