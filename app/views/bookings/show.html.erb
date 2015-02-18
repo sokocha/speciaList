@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class = "info-container">
 <p>
   <strong>Title:</strong>
   <%= @booking.listing.title %> by <%= link_to @booking.listing.user.first_name, user_path(@booking.listing.user)  %>
@@ -42,6 +43,7 @@
   <%= image_tag @booking.listing.try(:listing_image).url %>
 </p>
 <% end %>
+</div>
 
 
 

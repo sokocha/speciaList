@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class = "info-container">
 <p>
   <strong>Title:</strong>
   <%= @listing.title %> by <%= link_to @listing.user.first_name, user_path(@listing.user)   %>
@@ -21,7 +22,7 @@
   <%= @listing.description %>
 </p>
 
-<% if @listing.listing_image == nil %>
+<% if @listing.listing_image != nil %>
 <p>
   <%= image_tag @listing.listing_image.url %>
 </p>
@@ -36,7 +37,7 @@
   <strong>Category: </strong>
   <%= link_to @listing.category.name, category_path(@listing.category)  %>
 </p>
-
+</div>
 
 
 <% if can? :create, @listing.offers.new %>

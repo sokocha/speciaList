@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class = "info-container">
 <p>
   <%= @user.first_name %> <%= @user.last_name %>
 </p>
@@ -11,6 +12,10 @@
 <p>
   <%= link_to image_tag(@user.user_avatar.thumb.url), @user.user_avatar.detail.url %>
 </p>
+
+<% if @user.contractor != nil && @user.contractor.status == 'active' %>
+  <strong><p>Avg. Rating: </strong><%=@user.vote_weight_avg  %></p>
+<% end %>
 
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
@@ -30,7 +35,7 @@
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Status:</strong>
-  <%= @user.contractor.status %>
+  <span class="badge-success"><%= @user.contractor.status %></span>
 </p>
 <% end %>
 
@@ -81,11 +86,14 @@
 
 
 
+
+
 <p>
 <% if current_user.try(:geocoded?) && current_user!=@user%>
   <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
 <% end %>
 </p>
+</div>
 
 <br/>
 

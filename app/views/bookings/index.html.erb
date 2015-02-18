@@ -1,11 +1,15 @@
 <table class="tables">
   <thead>
-    <tr><h3>Active Projects</h3></tr>
+    
     <tr>
-      <th>Title</th>
+      <th>Active Projects</th>
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
+      <% if current_user.role == 'admin' %>
+      <th>Edit</th>
+      <th>Destroy</th>
+      <% end %>
       
     </tr>
   </thead>
@@ -32,16 +36,23 @@
   </tbody>
 </table>
 
-
+<br>
+<br>
 
 <table class = "tables">
   <thead>
-    <tr><h3>Completed Projects</h3></tr>
+    
     <tr>
-      <th>Title</th>
+      <th>Completed Projects</th>
       <th>Contractor</th>
       <th>Winning Bid</th>
       <th>Status</th>
+      <% if can? :edit, Booking %>
+      <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, Booking %>
+      <th>Destroy</th>
+      <% end %>
       
     </tr>
   </thead>
@@ -55,9 +66,12 @@
         <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
         <td><span class="badge-success"><%= booking.status %></span></td>
         
-        <% if can? :edit, booking %>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        
+        <td>
+          <% if can? :edit, booking %>
+          <%= link_to 'Edit', edit_booking_path(booking) %>
         <% end %>
+        </td>
         
         <% if can? :destroy, booking %>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>

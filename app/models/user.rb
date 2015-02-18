@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
   validates :phone_number, length: {is: 11}
-  acts_as_votable
 
 
 
@@ -38,6 +37,20 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable#, :authentication_keys => [:phone_number]
+
+
+  def vote_weights
+    @vote_weights ||= offers.map(&:booking).compact.flat_map(&:votes_for).map(&:vote_weight)
+  end
+
+  def vote_weight_sum
+    vote_weights.sum
+  end
+  def vote_weight_avg
+    vote_weight_sum.to_f / vote_weights.count
+  end
+
+
 
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s

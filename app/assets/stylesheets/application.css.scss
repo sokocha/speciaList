@@ -24,7 +24,70 @@
  @import "comments.css.scss";
  @import "navbar.css.scss";
 
- body { background: url(skulls.png); }
+ body { background: url(skulls.png);
+        margin: 0;
+  }
+
+h1 {
+  font-family: 'Lato', sans-serif;
+}
+
+th {
+  font-family: 'Lato', sans-serif;
+}
+
+td {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+strong {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+
+input#q_tags_name_cont{
+  @include appearance(none);
+  @include box-sizing(border-box);
+  @include transition(border-color);
+  background-color: white;
+  border-radius: $base-border-radius;
+  border-radius: $base-border-radius;
+  border: 1px solid $base-border-color;
+  display: block;
+  font-size: 1em;
+  font-style: italic;
+  margin: 0;
+  padding: ($base-spacing / 3) ($base-spacing / 3);
+  position: relative;
+  width: 100%;
+}
+
+a, img{
+  border-radius: 100%;
+}
+
+.info-container{
+  background-color: rgba(128,128,0,0.4);
+  
+  padding: 1.5em 1.5em 0 2.5em;
+
+}
+
+div.side-image-content{
+  background-color: rgba(128,128,0,0.2);
+}
+
+
+
+
+
 
  
 

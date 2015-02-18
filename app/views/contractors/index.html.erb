@@ -1,8 +1,19 @@
 <% if can? :create, Listing %>
-To hire a worker, Click <%= link_to 'Here', new_listing_path %>
+<p>To hire a worker, Click <%= link_to 'Here', new_listing_path %></p>
 <% end %>
 <br/>
 <br/>
+<%= search_form_for @q, url: request.path do |f| %>
+  <p>
+    <%= f.label :tags_name_cont %>
+    <%= f.text_field :tags_name_cont %>
+  </p>
+  <p>
+
+    <%= f.submit %>
+
+  </p>
+<% end %>
 <div class="side-image">
   <div class="images-wrapper"></div>
     <div class="side-image-content">
@@ -20,17 +31,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 
 
 
-<%= search_form_for @q, url: request.path do |f| %>
-  <p>
-    <%= f.label :tags_name_cont %>
-    <%= f.text_field :tags_name_cont %>
-  </p>
-  <p>
 
-    <%= f.submit %>
-
-  </p>
-<% end %>
 
 <table class='tables'>
   <thead>
@@ -97,7 +98,7 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
       <% if current_user %>
         <% if current_user.try(:geocoded?) %> 
           <td>
-            <span class="badge-alert"><%= current_user.distance_from(contractor.user).round(2) %></span> 
+            <span class="badge-alert"><%= current_user.distance_from(contractor.user).round(2) %>miles</span> 
           </td> 
         <% end %>
 
@@ -105,12 +106,16 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
       <% end %>
 
 
-
+        <td>
         <% if can? :edit, contractor%>
-        <td><%= link_to 'Edit', edit_contractor_path(contractor) %></td>
+        <%= link_to 'Edit', edit_contractor_path(contractor) %>
         <% end %>
+        </td>
+
         <% if can? :destroy, contractor %>
-        <td><%= link_to 'Destroy', contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to 'Destroy', contractor, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
         <% end %>
 
       </tr>

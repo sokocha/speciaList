@@ -2,18 +2,17 @@
 
 
 
-  <strong><%= @category.name %></strong>
+  
 
   <table class = "tables">
     <thead>
       <tr>
-        <th>Title</th>
+        <th><%= @category.name %></th>
         <th>Budget ₦</th>
-        <th>Image</th>
         <th>Status</th>
         <th>Client</th>
         <th>Distance</th>
-        <th colspan="6"></th>
+        <th colspan="5"></th>
       </tr>
     </thead>
     
@@ -23,7 +22,6 @@
         <tr>
           <td> <%= link_to listing.title , listing_path(listing)  %> </td>
           <td>₦<%= listing.budget %></td>
-          <td><%= listing.image %></td>
           <td><span class="badge-alert"><%= listing.status %></span></td>
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
           <% if current_user %>

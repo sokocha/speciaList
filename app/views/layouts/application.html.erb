@@ -3,6 +3,8 @@
 <head>
   <title>SpeaciaList</title>
   <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -33,16 +35,13 @@
             </li>
             <% end %>
             <li class="nav-link">
-            <%= link_to 'Hire Workers', categories_path  %>
+            <%= link_to 'Hire Workers', contractors_path  %>
           </li>
           <li class="nav-link">
             <%= link_to 'Find Work', listings_path  %>
           </li>
           <li class="nav-link">
             <%= link_to 'Browse Projects', bookings_path  %>
-          </li>
-          <li class="nav-link">
-            <%= link_to 'Categories', contractors_path  %>
           </li>
           
         </ul>
