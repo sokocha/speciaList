@@ -13,10 +13,16 @@
 
  *= require_self
  */
- 
- 
+ @import "bourbon";
+ @import "neat";
+ @import "variables.css.scss";
+ @import "tabs.css.scss";
+ @import "tables.css.scss";
 
  body { background: url(brickwall_@2X.png); }
+
+
+ 
 
 
 
