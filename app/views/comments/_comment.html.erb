@@ -1,6 +1,6 @@
 <div class = "comment">
   <div class = "comment-content">
-    <h4><%= comment.user.try :first_name %></h4>
+    <h4 id='comment_name'><%= comment.user.try :first_name %></h4>
     <p><%= comment.body %></p>
   </div>
   <div class = "comment-image">
