@@ -4,10 +4,13 @@ class User < ActiveRecord::Base
   has_one :contractor, dependent: :destroy
   has_many :listings
   has_many :offers, through: :listings
+  has_many :bookings, through: :offers
   has_many :comments
   
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+  validates :phone_number, length: {is: 11}
+  acts_as_votable
 
 
 
@@ -58,14 +61,23 @@ class User < ActiveRecord::Base
   def email_required?
     false
   end
-
   
   def involved_in?(booking)
     [booking.offer.try(:user), booking.listing.try(:user)].include?(self)
   end
 
- 
+  def votes
+    bookings.map do |booking|
+      booking.find_votes_for(:vote_scope => 'rate_originality').sum(:vote_weight)
+    end
+  end
 
+  def total_vote_score
+    votes.reduce(:+)
+  end
 
+  def average_vote_score
+    total_vote_score.to_f / bookings.count
+  end
 
 end

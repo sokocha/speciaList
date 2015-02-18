@@ -12,6 +12,7 @@ class Contractor < ActiveRecord::Base
   acts_as_taggable
   validate :certified_not_changed
   validate :verified_not_changed
+  self.per_page = 1
 
 
 private

@@ -54,7 +54,10 @@ class BookingsController < ApplicationController
    # rescue CanCan::AccessDenied
    #    exception.message
    @booking = Booking.find(params[:id])
-   @booking.liked_by current_user, :vote_scope => 'rate_originality', :vote_weight => params[:vote_weight]
+   # @contractor = @booking.offer.user
+   # @contractor.liked_by current_user, :vote_scope => 'rate_originality', :vote_weight => params[:vote_weight]
+   # @contractor.vote_by :voter => current_user, :vote_scope => 'rate_originality', :vote_weight => params[:vote_weight], :duplicate => true
+   @booking.vote_by :voter => current_user, :vote_scope => 'rate_originality', :vote_weight => params[:vote_weight], duplicate: true
    render :template => "bookings/originalityscore", layout: false if request.xhr?
  end
 

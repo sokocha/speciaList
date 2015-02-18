@@ -11,6 +11,15 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 </div>
 <br>
 <br>
+<%= search_form_for @q, url: request.path do |f| %>
+  <p>
+    <%= f.label :tags_name_cont %>
+    <%= f.text_field :tags_name_cont %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <table>
   <thead>
@@ -47,9 +56,12 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
           <% end %>
         <% end %>
 
-    
-          <%#= link_to contractor.try(:user).try(:first_name), user_path(contractor.try(:user))  %>gi
-
+        <td>
+          <% if contractor.user %>
+            <%= link_to contractor.try(:user).try(:first_name), user_path(contractor.try(:user))  %>
+          <% end %>
+        </td>
+        
       
         <% if contractor.category != nil %>
         <td>
@@ -59,13 +71,17 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
         <td> Not Listed</td>
         <% end %>
 
+
+
+      <% if current_user %>
         <% if current_user.try(:geocoded?) %> 
           <td>
-            <%= current_user.distance_from(contractor.user).round(2) %> miles away
+            <%= current_user.distance_from(contractor.user).round(3) %> miles away
           </td> 
         <% end %>
 
         <td><%= raw contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
+      <% end %>
 
 
 
@@ -78,8 +94,9 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 
       </tr>
     <% end %>
-  </tbody>
-</table>
+
+
+
 
 <br>
 

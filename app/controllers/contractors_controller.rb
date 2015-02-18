@@ -11,6 +11,9 @@ class ContractorsController < ApplicationController
     else
       @contractors = Contractor.all
     end
+
+    @q = @contractors.search(params[:q])
+    @contractors = @q.result(distinct: true)
     # respond_with(@contractors)
   end
 

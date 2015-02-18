@@ -66,6 +66,8 @@
   <% if can? :score_originality, @booking %>
     <h4>How would you rate the other party?</h4>
 
+    
+
     <ul id="originality-buttons">
       <% ['Terrible (1)', 'Not Good (2)', 'Average (3)', 'Enjoyable (4)', 'Amazing (5)' ].each_with_index do |text, index| %>
         <li><%= form_for @booking, url: originality_rating_booking_path(@booking), method: :put, remote: true, html: { class: "originality_score_form" } do |f| %>
@@ -75,9 +77,9 @@
       <% end %>
     </ul>
     <% elsif current_user %>
-    <p>You can't vote on the originality of your own booking!</p>
+    <p>Only the client may vote on the booking!</p>
     <% else %>
-    <p>Sign in to vote on the originality of this booking</p>
+    <p>Sign in to vote on the booking</p>
     <% end %>
     <hr>
     <h5>Current score: <span id="originality_score"> <%= render :template => "bookings/originalityscore" %></span></h5>
