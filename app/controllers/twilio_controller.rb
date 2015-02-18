@@ -39,6 +39,9 @@ class TwilioController < ApplicationController
     if job_type == 'offer' && price_or_response=='yes' && sender == Offer.find_by(id: job_type_id).listing.user.phone_number
 
       new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id: job_type_id).listing_id)
+
+      Offer.find_by(id: job_type_id).listing.update(status: 'contracted')
+
     end
 
 
