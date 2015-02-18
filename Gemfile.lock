@@ -44,6 +44,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -91,6 +94,9 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.10.1)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     orm_adapter (0.5.0)
     pg (0.18.1)
     polyamorous (1.1.0)
@@ -189,6 +195,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   better_errors
   binding_of_caller
+  bourbon
   cancancan
   carrierwave (= 0.9.0)
   coffee-rails (~> 4.0.0)
@@ -196,6 +203,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
+  neat
   pg
   pry-byebug
   pry-rails

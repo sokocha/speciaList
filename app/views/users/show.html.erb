@@ -120,126 +120,132 @@
 <% end %>
 
 
-
-
-
-
-
-
 <ul class="accordion-tabs">
   <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="is-active tab-link">Tab Item</a>
+    <a href="javascript:void(0)" class="is-active tab-link"> <%=@user.first_name %>'s Active Listings</a>
     <div class="tab-content">
       <table>
-        <h2> <%=@user.first_name %>'s Active Listings</h2>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Category</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
+              <h2> <%=@user.first_name %>'s Active Listings</h2>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-        <tbody>
-          <% @user.listings.each do |listing| %>
-          <% if listing.status == "uncontracted" %>
-            <tr>
-              <td> <%= link_to listing.title, listing_path(listing)  %> </td>
-              <td><%= listing.try(:status) %></td>
-              <% if listing.booking != nil %>
-              <td> <%= link_to listing.try(:booking).try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
-              <% end %>
-              <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
-            </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+              <tbody>
+                <% @user.listings.each do |listing| %>
+                <% if listing.status == "uncontracted" %>
+                  <tr>
+                    <td> <%= link_to listing.title, listing_path(listing)  %> </td>
+                    <td><%= listing.try(:status) %></td>
+                    <% if listing.booking != nil %>
+                    <td> <%= link_to listing.try(:booking).try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                    <% end %>
+                    <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
     </div>
   </li>
   <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="tab-link">Another Tab</a>
-    <div class="tab-content">
-    <table>
-      <h2><%=@user.first_name %>'s Active Projects</h2>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Total Cost (₦)</th>
-          <th>Status</th>
-          <th>Contractor</th>
-          <th>Category</th>
-          <th colspan="5"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @user.listings.each do |listing| %>
-        <% if listing.try(:booking).try(:status) == 'active' %>
-          <tr>
-            <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
-            <td> ₦<%= listing.booking.offer.price %></td>
-            <td><%= listing.booking.try(:status) %></td>
-
-            <% if listing.booking != nil %>
-            <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
-            <%else%>
-              <td> <p>TBD</p></td>
-            <% end %>
-            <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
-          </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-  </li>
-  <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="tab-link">Third</a>
+    <a href="javascript:void(0)" class="tab-link"><%=@user.first_name %>'s Active Projects</a>
     <div class="tab-content">
       <table>
-        <h2><%=@user.first_name %>'s Completed Projects</h2>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Total Cost (₦)</th>
-            <th>Status</th>
-            <th>Contractor</th>
-            <th>Category</th>
-            <th colspan="5"></th>
-          </tr>
-        </thead>
+            <h2><%=@user.first_name %>'s Active Projects</h2>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Total Cost (₦)</th>
+                <th>Status</th>
+                <th>Contractor</th>
+                <th>Category</th>
+                <th colspan="5"></th>
+              </tr>
+            </thead>
 
-        <tbody>
-          <% @user.listings.each do |listing| %>
-          <% if listing.try(:booking).try(:status) == 'complete' %>
-            <tr>
-              <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
-              <td> ₦<%= listing.booking.offer.price %></td>
-              <td><%= listing.booking.try(:status) %></td>
+            <tbody>
+              <% @user.listings.each do |listing| %>
+              <% if listing.try(:booking).try(:status) == 'active' %>
+                <tr>
+                  <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
+                  <td> ₦<%= listing.booking.offer.price %></td>
+                  <td><%= listing.booking.try(:status) %></td>
 
-              <% if listing.booking != nil %>
-              <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
-              <%else%>
-                <td> <p>TBD</p></td>
+                  <% if listing.booking != nil %>
+                  <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                  <%else%>
+                    <td> <p>TBD</p></td>
+                  <% end %>
+                  <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                </tr>
+                <% end %>
               <% end %>
-              <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
-            </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>   
+            </tbody>
+          </table>
     </div>
   </li>
   <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="tab-link">Last Item</a>
+    <a href="javascript:void(0)" class="tab-link"><%=@user.first_name %>'s Completed Projects</a>
     <div class="tab-content">
-      <p>Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus dui urna.</p>
+      <table>
+              <h2><%=@user.first_name %>'s Completed Projects</h2>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Total Cost (₦)</th>
+                  <th>Status</th>
+                  <th>Contractor</th>
+                  <th>Category</th>
+                  <th colspan="5"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @user.listings.each do |listing| %>
+                <% if listing.try(:booking).try(:status) == 'complete' %>
+                  <tr>
+                    <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
+                    <td> ₦<%= listing.booking.offer.price %></td>
+                    <td><%= listing.booking.try(:status) %></td>
+
+                    <% if listing.booking != nil %>
+                    <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                    <%else%>
+                      <td> <p>TBD</p></td>
+                    <% end %>
+                    <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>      
     </div>
   </li>
 </ul>
 
+
+
+
+
+
+
+
+
+
+      
+
+
+    
+
+
+      
+
+  
 
 
 
