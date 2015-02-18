@@ -3,12 +3,18 @@ To hire a worker, Click <%= link_to 'Here', new_listing_path %>
 <% end %>
 <br/>
 <br/>
-
-<div id="tag_cloud">
-  <% tag_cloud Contractor.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class  %>
-  <% end %>
+<div class="side-image">
+  <div class="images-wrapper"></div>
+    <div class="side-image-content">
+      <div id="tag_cloud">
+        <% tag_cloud Contractor.tag_counts, %w[s m l] do |tag, css_class| %>
+          <%= link_to tag.name, tag_path(tag.name), class: css_class  %>
+        <% end %>
+      </div>
+  </div>
 </div>
+
+
 <br>
 <br>
 

@@ -1,0 +1,36 @@
+.side-image {  
+
+  
+  p {
+    color: $base-font-color;
+    line-height: $base-line-height;
+  }
+  
+
+  background: $side-image-content-background;
+
+  @include media($large-screen) {
+    @include row(table);
+  }
+
+  .side-image-content {
+    @include span-columns(12);
+    padding: 1em 1em 4em 1em;
+
+      #tag_cloud {
+        width: 100%;
+        line-height: 1.6em;
+        .s{font-size: 0.8em};
+        .m{font-size: 1.2em};
+        .l{font-size: 1.8em};
+      }
+    
+
+
+  }
+
+  
+}
+
+
+
