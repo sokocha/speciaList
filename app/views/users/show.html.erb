@@ -39,7 +39,7 @@
 </p>
 <% end %>
 
-<% if @user.contractor %>
+<% if @user.contractor && @user.contractor.status == 'active' %>
 <td> <strong>Expertise:</strong> <%= raw @user.contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
 <% end %>
 
@@ -50,6 +50,9 @@
   <%= @user.phone_number %>
 </p>
 <% end %>
+
+
+
 
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
@@ -84,6 +87,10 @@
 <% end %>
 
 
+<% if can? :update, @user %>
+  <%= link_to 'Edit User Profile', edit_user_path(@user) %> |
+<% end %>
+
 
 
 
@@ -98,6 +105,14 @@
 <br>
 <br/>
 
+
+
+<% if @user.contractor != nil %>
+<% if can? :update, @user%>
+  <td><%= link_to 'Edit Contractor Profile', edit_contractor_path(@user.contractor) %></td>
+<% end %>
+<% end %>
+
 <% if @user.contractor != nil %>
   <% if can? :update, @user %>
     <% if @user.contractor.try(:status) == 'active' %>
@@ -108,13 +123,8 @@
 <% end %>
 
 
-<% if can? :update, @user %>
-  <%= link_to 'Edit User Profile', edit_user_path(@user) %> |
-<% end %>
 
-<% if can? :update, @user%>
-  <td><%= link_to 'Edit Contractor Profile', edit_contractor_path(@user.contractor) %></td>
-<% end %>
+
 
 
 

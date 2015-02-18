@@ -23,6 +23,7 @@ class ContractorsController < ApplicationController
 
   def new
     @contractor = Contractor.new
+    @user = current_user
     respond_with(@contractor)
   end
 
@@ -32,7 +33,7 @@ class ContractorsController < ApplicationController
   def create
     @contractor = Contractor.new(contractor_params)
     @contractor.save
-    respond_with(@contractor)
+    redirect_to(user_path(@contractor.user))
   end
 
   def update
