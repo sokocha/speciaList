@@ -7,13 +7,15 @@ class ContractorsController < ApplicationController
 
   def index
     if params[:tag]
-      @contractors = Contractor.tagged_with(params[:tag])
+      @contractors = Contractor.tagged_with(params[:tag]).order(:created_at).page(params[:page])
     else
-      @contractors = Contractor.all
+      @contractors = Contractor.all.order(:created_at).page(params[:page])
     end
 
     @q = @contractors.search(params[:q])
     @contractors = @q.result(distinct: true)
+
+    order(:created_at).page(params[:page])
 
     
     # respond_with(@contractors)
