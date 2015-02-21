@@ -11,8 +11,12 @@
         <th>Budget ₦</th>
         <th>Status</th>
         <th>Client</th>
+        <% if current_user %>
         <th>Distance</th>
+        <% end %>
+        <% if current_user.try(:role) == "admin" %>
         <th colspan="5"></th>
+        <% end %>
       </tr>
     </thead>
     
@@ -21,7 +25,7 @@
       <% @category.listings.where(status: 'uncontracted').each do |listing| %>
         <tr>
           <td> <%= link_to listing.title , listing_path(listing)  %> </td>
-          <td>₦<%= listing.budget %></td>
+          <td><span class="badge-success">₦<%= listing.budget %></span></td>
           <td><span class="badge-alert"><%= listing.status %></span></td>
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
           <% if current_user %>

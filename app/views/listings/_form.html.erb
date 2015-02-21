@@ -15,15 +15,15 @@
     <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title, placeholder: "Broken Toilet" %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :budget %><br>
+    <%= f.label :budget, placeholder: "₦3000" %><br>
     <%= f.number_field :budget %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description, placeholder: "I need a plumber to come and fix my toilet ASAP" %><br>
     <%= f.text_area :description %>
   </div>
   <div class="field">
