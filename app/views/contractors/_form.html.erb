@@ -16,11 +16,11 @@
   </div>
   <div class="field">
     <%= f.label :wage, 'Hourly Salary' %><br>
-    <%= f.number_field :wage %>
+    <%= f.number_field :wage, placeholder: 'How much do you charge per hour? e.g. 2500' %>
   </div>
   <div class="field">
-    <%= f.label :tag_list, "Tags separated by commas"  %>
-    <%= f.text_field :tag_list %>
+    <%= f.label :tag_list  %>
+    <%= f.text_field :tag_list, placeholder: "What do you specialize in? e.g. toilets, showers, pipes, drainage, sewage, etc" %>
   </div>
 
   <div class="field">

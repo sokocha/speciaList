@@ -6,7 +6,7 @@
 <%= search_form_for @q, url: request.path do |f| %>
   <p>
     <%= f.label :tags_name_cont %>
-    <%= f.text_field :tags_name_cont %>
+    <%= f.text_field :tags_name_cont, placeholder: "e.g. Plumber, Carpenter, Mechanic, Electrician, etc" %>
   </p>
   <p>
 
