@@ -149,7 +149,6 @@
                   <th>Title</th>
                   <th>Status</th>
                   <th>Category</th>
-                  <th colspan="3"></th>
                 </tr>
               </thead>
 
@@ -217,7 +216,6 @@
                   <th>Status</th>
                   <th>Contractor</th>
                   <th>Category</th>
-                  <th colspan="5"></th>
                 </tr>
               </thead>
 
@@ -234,7 +232,9 @@
                     <%else%>
                       <td> <p>TBD</p></td>
                     <% end %>
-                    <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                    <td> 
+                      <%= link_to listing.category.name, category_path(listing.category) %> 
+                    </td>
                   </tr>
                   <% end %>
                 <% end %>
