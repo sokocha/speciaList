@@ -26,34 +26,34 @@ class TwilioController < ApplicationController
 
 
     # alter receiver phone number to make it from +44 to 07
-    if sender.slice!(0..2) == "+234"
+    if sender.slice!(0..2) == "+44"
       sender = sender.insert(0,'0')
 
 
-    if job_type == 'listing'
-      Offer.create(listing_id: job_type_id, price: price_or_response, user_id: User.find_by(phone_number: sender).id)
-    end
+      if job_type == 'listing'
+        Offer.create(listing_id: job_type_id, price: price_or_response, user_id: User.find_by(  phone_number: sender).id)
+      end
 
 
 
-    if job_type == 'offer' && price_or_response=='yes' && sender == Offer.find_by(id: job_type_id).listing.user.phone_number
+      if job_type == 'offer' && price_or_response=='yes' && sender == Offer.find_by(id:   job_type_id).listing.user.phone_number
+  
+        new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id:  job_type_id).listing_id)
+  
+        Offer.find_by(id: job_type_id).listing.update(status: 'contracted')
+  
+      end
 
-      new_booking = Booking.create(offer_id: job_type_id,listing_id: Offer.find_by(id: job_type_id).listing_id)
-
-      Offer.find_by(id: job_type_id).listing.update(status: 'contracted')
-
-    end
 
 
-
-    if job_type == 'booking' && price_or_response == 'complete' && sender == Booking.find_by(id: job_type_id).listing.user.phone_number
-
-      Booking.find_by(id: job_type_id).update(status: price_or_response)
-
-    elsif job_type == 'booking' && price_or_response == 'cancelled'
-      Booking.find_by(id: job_type_id).update(status: price_or_response)
-    end
-
+      if job_type == 'booking' && price_or_response == 'complete' && sender == Booking.find_by(id:   job_type_id).listing.user.phone_number
+  
+        Booking.find_by(id: job_type_id).update(status: price_or_response)
+  
+      elsif job_type == 'booking' && price_or_response == 'cancelled'
+        Booking.find_by(id: job_type_id).update(status: price_or_response)
+      end
+  
 
   end
 
