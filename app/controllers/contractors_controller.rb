@@ -7,9 +7,9 @@ class ContractorsController < ApplicationController
 
   def index
     if params[:tag]
-      @contractors = Contractor.tagged_with(params[:tag]).page(params[:page])
+      @contractors = Contractor.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)
     else
-      @contractors = Contractor.all.page(params[:page])
+      @contractors = Contractor.all.paginate(page: params[:page], per_page: 5)
     end
 
     @q = @contractors.search(params[:q])

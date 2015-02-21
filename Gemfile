@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'kaminari'
+
 gem 'neat'
 gem 'bourbon'
 gem 'ransack'
