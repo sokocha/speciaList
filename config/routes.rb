@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :listings
 
-  resources :contractors
+  resources :contractors do
+    get 'page/:page', action: :index, on: :collection
+  end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
