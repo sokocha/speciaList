@@ -1,5 +1,6 @@
 <% if can? :create, Listing %>
-<p>To hire a worker, Click <%= link_to 'Here', new_listing_path %></p>
+<br>
+<h2>To hire a worker, Click <%= link_to 'Here', new_listing_path %></h2>
 <% end %>
 <br/>
 <br/>
@@ -42,7 +43,7 @@
       <th>User</th>
       <th>Category</th>
       <% if current_user %>
-      <th><%= sort_link @q, :distance %></th>
+      <th><%= sort_link @q, :current_user %></th>
       <th>Expertise</th>
       <th colspan="7"></th>
       <% end %>

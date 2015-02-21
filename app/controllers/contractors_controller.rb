@@ -14,6 +14,8 @@ class ContractorsController < ApplicationController
 
     @q = @contractors.search(params[:q])
     @contractors = @q.result(distinct: true)
+
+    
     # respond_with(@contractors)
   end
 
