@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'kaminari'
-
 gem 'neat'
 gem 'bourbon'
 gem 'ransack'
-
+gem 'will_paginate', '~> 3.0.6'
 gem 'twilio-ruby'
 gem 'acts-as-taggable-on'
 gem 'rmagick'
