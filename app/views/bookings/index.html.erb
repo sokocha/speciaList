@@ -1,91 +1,116 @@
-<table class="tables">
-  <thead>
-    
-    <tr>
-      <th>Active Projects</th>
-      <th>Contractor</th>
-      <th>Winning Bid</th>
-      <th>Status</th>
-      <% if can? :edit, Booking %>
-        <th>Edit</th>
-      <% end %>
-      <% if can? :destroy, Booking %>
-        <th>Destroy</th>
-      <% end %>
-      
-    </tr>
-  </thead>
+<ul class="accordion-tabs">
+  <li class="tab-header-and-content">
+    <a href="javascript:void(0)" class="is-active tab-link">Tab Item</a>
+    <div class="tab-content">
+      <table class="tables">
+        <thead>
+          <tr>
+            <th>Active Projects</th>
+            <th>Contractor</th>
+            <th>Winning Bid</th>
+            <th>Status</th>
+            <% if can? :edit, Booking %>
+              <th>Edit</th>
+            <% end %>
+            <% if can? :destroy, Booking %>
+              <th>Destroy</th>
+            <% end %>
+            
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @bookings.each do |booking| %>
-    <% if booking.status == 'active' %>
-      <tr>
-        <td><%= link_to booking.listing.title, booking_path(booking) %></td>
-        <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
-        <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
-        <td><span class="badge-alert"><%= booking.status %></span></td>
-        
-        <td>
-        <% if can? :edit, booking %>
-        <%= link_to 'Edit', edit_booking_path(booking) %>
-        <% end %>
-        </td>
-        
-        
-        <% if can? :destroy, booking %>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @bookings.each do |booking| %>
+          <% if booking.status == 'active' %>
+            <tr>
+              <td><%= link_to booking.listing.title, booking_path(booking) %></td>
+              <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
+              <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
+              <td><span class="badge-alert"><%= booking.status %></span></td>
+              
+              <td>
+              <% if can? :edit, booking %>
+              <%= link_to 'Edit', edit_booking_path(booking) %>
+              <% end %>
+              </td>
+              
+              
+              <% if can? :destroy, booking %>
+              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tr>
+
+          <% end %>
+          <% end %>
+        </tbody>
+       
+      </table>
+    </div>
+  </li>
+  <li class="tab-header-and-content">
+    <a href="javascript:void(0)" class="tab-link">Another Tab</a>
+    <div class="tab-content">
+      <table class = "tables">
+        <thead>
+          
+          <tr>
+            <th>Completed Projects</th>
+            <th>Contractor</th>
+            <th>Winning Bid</th>
+            <th>Status</th>
+            <% if can? :edit, Booking %>
+            <th>Edit</th>
+            <% end %>
+            <% if can? :destroy, Booking %>
+            <th>Destroy</th>
+            <% end %>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @bookings.each do |booking| %>
+          <% if booking.status == 'complete' %>
+            <tr>
+              <td><%= link_to booking.listing.title, booking_path(booking) %></td>
+              <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
+              <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
+              <td><span class="badge-success"><%= booking.status %></span></td>
+              
+              
+              <td>
+                <% if can? :edit, booking %>
+                <%= link_to 'Edit', edit_booking_path(booking) %>
+              <% end %>
+              </td>
+              
+              <% if can? :destroy, booking %>
+              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tr>
+            <% end %>
+
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
 
 <br>
 <br>
 
-<table class = "tables">
-  <thead>
-    
-    <tr>
-      <th>Completed Projects</th>
-      <th>Contractor</th>
-      <th>Winning Bid</th>
-      <th>Status</th>
-      <% if can? :edit, Booking %>
-      <th>Edit</th>
-      <% end %>
-      <% if can? :destroy, Booking %>
-      <th>Destroy</th>
-      <% end %>
-      
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @bookings.each do |booking| %>
-    <% if booking.status == 'complete' %>
-      <tr>
-        <td><%= link_to booking.listing.title, booking_path(booking) %></td>
-        <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
-        <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
-        <td><span class="badge-success"><%= booking.status %></span></td>
-        
-        
-        <td>
-          <% if can? :edit, booking %>
-          <%= link_to 'Edit', edit_booking_path(booking) %>
-        <% end %>
-        </td>
-        
-        <% if can? :destroy, booking %>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+
 
 
   

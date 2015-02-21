@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :bookings do
+    get 'page/:page', action: :index, on: :collection
     member do
         put "originality_rating", to: "bookings#score_originality"
       end
