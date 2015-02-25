@@ -25,7 +25,7 @@ class Ability
       cannot :create, Category
 
       cannot :create, Offer do |offer|
-        user.contractor == nil || user.contractor.status != 'active' || offer.listing.status == "contracted"
+        user.contractor == nil || user.contractor.status != 'active' || offer.listing.status != "uncontracted"
       end
 
 
