@@ -24,7 +24,7 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @listing.status %>
+  <%= @listing.try(:status) %>
 </p>
 
 <p>
