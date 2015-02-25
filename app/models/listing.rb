@@ -36,6 +36,10 @@ class Listing < ActiveRecord::Base
       # end 
     end
 
+    def open?
+      offers.any? {|o| o.status == 'accepted'}
+    end
+
 
 
    
