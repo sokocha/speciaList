@@ -41,29 +41,35 @@
 
 </div>
 
-
-<% if can? :create, Offer.new %>
-  <%= form_for Offer.new do |offer_form|%>
-    Price : ₦<%= offer_form.number_field :price %>
-
-  <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
-  <%= offer_form.hidden_field :user_id, :value => current_user.id %>
-  <div class="actions">
-    <%= offer_form.submit %>
-  </div>
+<% if @listing.open? %>
+  <% if can? :create, Offer.new %>
+    <%= form_for Offer.new do |offer_form|%>
+      Price : ₦<%= offer_form.number_field :price %>
+  
+    <%= offer_form.hidden_field :listing_id, :value => @listing.id %>
+    <%= offer_form.hidden_field :user_id, :value => current_user.id %>
+    <div class="actions">
+      <%= offer_form.submit %>
+    </div>
+    <% end %>
   <% end %>
 <% end %>
 
 
+
 <table class = "tables">
+  <% if @listing.offers.any? %>
   <thead>
     <tr>
       <th>Price</th>
       <th>Contractor</th>
       <th>Distance</th>
-      <th colspan="3"></th>
+      <% if @listing.open? %>
+        <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
+  <% end %>
 
   <tbody>
     <% @offers.each do |offer| %>
@@ -76,7 +82,7 @@
           <% end %>
         </td>
 
-
+      <% if @listing.open? %>
         <% if can? :update, @listing %>
         <td>
           <%= form_for offer, method: :patch do |f| -%>
@@ -88,6 +94,7 @@
           <% end -%>
         </td>
         <% end %>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

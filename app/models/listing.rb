@@ -36,9 +36,7 @@ class Listing < ActiveRecord::Base
       # end 
     end
 
-    def open?
-      offers.any? {|o| o.status == 'accepted'}
-    end
+
 
 
 
@@ -47,6 +45,14 @@ class Listing < ActiveRecord::Base
 # Send active listing status to the creator of the listing
     message = client.messages.create from: '+441706300252', to: self.user.phone_number, body: "#{self.user.first_name}, your listing: #{self.title} for ₦#{self.budget} is now active. You should receive offers from interested contractors shortly" 
 
+  end
+
+  # def open?
+  #   offers.any? {|o| o.status == 'accepted'}
+  # end
+
+  def open?
+    status == 'uncontracted'
   end
 
   
