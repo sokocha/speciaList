@@ -24,7 +24,11 @@
 
 <p>
   <strong>Status:</strong>
-  <span class="badge-error"><%= @listing.try(:status) %></span>
+  <% if @listing.try(:status) == 'uncontracted' %>
+  <span class="badge-success"><%= @listing.try(:status) %></span>
+  <% elsif @listing.try(:status) == 'contracted' %>
+    <span class="badge-error"><%= @listing.try(:status) %></span>
+  <% end %>
 </p>
 
 <p>
@@ -34,7 +38,7 @@
 
 <% if @listing.listing_image != nil %>
 <p>
-  <%= image_tag @listing.listing_image.url %>
+  <%= link_to image_tag(@listing.listing_image.thumb.url), @listing.listing_image.detail.url %>
 </p>
 <% end %>
 

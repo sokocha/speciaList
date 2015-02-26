@@ -1,6 +1,6 @@
 <ul class="accordion-tabs">
   <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="is-active tab-link">Tab Item</a>
+    <a href="javascript:void(0)" class="is-active tab-link">Active Projects</a>
     <div class="tab-content">
       <table class="tables">
         <thead>
@@ -48,7 +48,7 @@
     </div>
   </li>
   <li class="tab-header-and-content">
-    <a href="javascript:void(0)" class="tab-link">Another Tab</a>
+    <a href="javascript:void(0)" class="tab-link">Completed Projects</a>
     <div class="tab-content">
       <table class = "tables">
         <thead>
@@ -75,7 +75,7 @@
               <td><%= link_to booking.listing.title, booking_path(booking) %></td>
               <td><%= link_to booking.offer.user.first_name, user_path(booking.offer.user) %></td>
               <td><span class="badge-notice">₦<%= link_to booking.offer.price , booking_path(booking)  %></span></td>
-              <td><span class="badge-success"><%= booking.status %></span></td>
+              <td><span class="badge"><%= booking.status %></span></td>
               
               
               <td>
