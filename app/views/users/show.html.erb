@@ -155,7 +155,7 @@
                 <% if listing.status == "uncontracted" %>
                   <tr>
                     <td> <%= link_to listing.title, listing_path(listing)  %> </td>
-                    <td><%= listing.try(:status) %></td>
+                    <td><span class="badge-success"><%= listing.try(:status) %></span></td>
                     <% if listing.booking != nil %>
                     <td> <%= link_to listing.try(:booking).try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
                     <% end %>
@@ -188,7 +188,7 @@
                 <tr>
                   <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
                   <td> ₦<%= listing.booking.offer.price %></td>
-                  <td><%= listing.booking.try(:status) %></td>
+                  <td><span class="badge-alert"><%= listing.booking.try(:status) %></span></td>
 
                   <% if listing.booking != nil %>
                   <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
@@ -223,7 +223,7 @@
                   <tr>
                     <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
                     <td> ₦<%= listing.booking.offer.price %></td>
-                    <td><%= listing.booking.try(:status) %></td>
+                    <td><span class="badge-notice"><%= listing.booking.try(:status) %></span></td>
 
                     <% if listing.booking != nil %>
                     <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
