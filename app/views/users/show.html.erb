@@ -9,9 +9,9 @@
   
 </p>
 
-<p>
+<div id="user_avatar">
   <%= link_to image_tag(@user.user_avatar.thumb.url) %>
-</p>
+</div>
 
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
   <strong><p>Avg. Rating: </strong><%=@user.vote_weight_avg  %></p>
