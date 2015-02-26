@@ -19,7 +19,7 @@
 <% if @user.contractor != nil && @user.contractor.status == 'active' %>
 <p>
   <strong>Job Category:</strong>
-  <%= @user.try(:contractor).try(:category).try(:name) %>
+  <%= link_to @user.try(:contractor).try(:category).try(:name), category_path(@user.try(:contractor).try(:category))  %> 
 </p>
 <% end %>
 
