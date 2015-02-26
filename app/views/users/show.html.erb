@@ -1,15 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <div class = "info-container">
-<p>
-  <%= @user.first_name %> <%= @user.last_name %>
-</p>
 
-<p>
-  
-</p>
 
 <div id="user_avatar">
+  <p>
+    <%= @user.first_name %> <%= @user.last_name %>
+  </p>
+
   <%= link_to image_tag(@user.user_avatar.thumb.url) %>
 </div>
 
