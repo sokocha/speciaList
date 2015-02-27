@@ -118,12 +118,23 @@ header.navigation {
         padding-right: 1em;
       }
 
+      
+
       &:focus,
       &:hover {
         color: yellow;
-        font-weight: bold;
+        font-weight: bolder;
       }
     }
+
+    a.call_to_action {
+    color: red;
+    font-weight: bold;
+      &:hover{
+        color: yellow;
+      }
+    }
+
   }
 
   .active-nav-item a {
