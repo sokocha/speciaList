@@ -3,101 +3,101 @@
 <div class = "info-container">
 
 
-<div id="user_avatar">
+  <div id="user_avatar">
+    <p>
+      <%= @user.first_name %> <%= @user.last_name %>
+    </p>
+  
+    <%= link_to image_tag(@user.user_avatar.thumb.url) %>
+  </div>
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <strong><p>Avg. Rating: </strong><%=@user.vote_weight_avg  %></p>
+  <% end %>
+
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <p>
+      <strong>Job Category:</strong>
+      <%= link_to @user.try(:contractor).try(:category).try(:name), category_path(@user.try(:contractor).try(:category))  %> 
+    </p>
+  <% end %>
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <p>
+      <strong>Hourly Wage:</strong>
+      ₦<%= @user.try(:contractor).try(:wage) %>
+    </p>
+  <% end %>
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <p>
+      <strong>Status:</strong>
+      <span class="badge-success"><%= @user.contractor.status %></span>
+    </p>
+  <% end %>
+
+  <% if @user.contractor && @user.contractor.status == 'active' %>
+    <td> <strong>Expertise:</strong> <%= raw @user.contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
+  <% end %>
+
+
+  <% if can? :update, @user  %>
+    <p>
+      <strong>Phone number:</strong>
+      <%= @user.phone_number %>
+    </p>
+  <% end %>
+
+
+
+
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <p>
+      <strong>Certification</strong>
+      <% if @user.try(:contractor).try(:certified) == true %>
+        <%= image_tag 'green_tick.png' %>
+      <% else %>
+        <%= image_tag 'red_x.png' %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+    <p>
+      <strong>Verified by SpeciaList™</strong>
+        <% if @user.try(:contractor).try(:verified) == true %>
+          <%= image_tag 'green_tick.png' %>
+        <% else %>
+          <%= image_tag 'red_x.png' %>
+        <% end %>
+    </p>
+  <% end %>
+
+
+  <% if can? :update, @user  %>
+    <p>
+      <strong>Address:</strong>
+      <%= @user.address %>
+    </p>
+  <% end %>
+
+
+  <% if can? :update, @user %>
+    <%= link_to 'Edit User Profile', edit_user_path(@user) %> |
+  <% end %>
+
+
+
+
+
   <p>
-    <%= @user.first_name %> <%= @user.last_name %>
+    <% if current_user.try(:geocoded?) && current_user!=@user%>
+      <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
+    <% end %>
   </p>
 
-  <%= link_to image_tag(@user.user_avatar.thumb.url) %>
-</div>
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-  <strong><p>Avg. Rating: </strong><%=@user.vote_weight_avg  %></p>
-<% end %>
-
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-<p>
-  <strong>Job Category:</strong>
-  <%= link_to @user.try(:contractor).try(:category).try(:name), category_path(@user.try(:contractor).try(:category))  %> 
-</p>
-<% end %>
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-<p>
-  <strong>Hourly Wage:</strong>
-  ₦<%= @user.try(:contractor).try(:wage) %>
-</p>
-<% end %>
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-<p>
-  <strong>Status:</strong>
-  <span class="badge-success"><%= @user.contractor.status %></span>
-</p>
-<% end %>
-
-<% if @user.contractor && @user.contractor.status == 'active' %>
-<td> <strong>Expertise:</strong> <%= raw @user.contractor.try(:tag_list).map {|t| link_to t, tag_path(t)}.join(', ') %></td>
-<% end %>
-
-
-<% if can? :update, @user  %>
-<p>
-  <strong>Phone number:</strong>
-  <%= @user.phone_number %>
-</p>
-<% end %>
-
-
-
-
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-<p>
-  <strong>Certification</strong>
-  <% if @user.try(:contractor).try(:certified) == true %>
-    <%= image_tag 'green_tick.png' %>
-  <% else %>
-    <%= image_tag 'red_x.png' %>
-  <% end %>
-</p>
-
-<% end %>
-
-<% if @user.contractor != nil && @user.contractor.status == 'active' %>
-<p>
-  <strong>Verified by SpeciaList™</strong>
-    <% if @user.try(:contractor).try(:verified) == true %>
-      <%= image_tag 'green_tick.png' %>
-    <% else %>
-      <%= image_tag 'red_x.png' %>
-    <% end %>
-</p>
-<% end %>
-
-
-<% if can? :update, @user  %>
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-<% end %>
-
-
-<% if can? :update, @user %>
-  <%= link_to 'Edit User Profile', edit_user_path(@user) %> |
-<% end %>
-
-
-
-
-
-<p>
-<% if current_user.try(:geocoded?) && current_user!=@user%>
-  <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
-<% end %>
-</p>
 </div>
 
 <br>
