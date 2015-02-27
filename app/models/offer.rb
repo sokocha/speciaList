@@ -36,14 +36,14 @@ class Offer < ActiveRecord::Base
   end
 
   def send_new_offer_sms
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token, Rails.application.secrets.twilio_phone_number
 
 
-    message = client.messages.create from: '+441706300252', to: self.listing.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} bid ₦#{self.price} on #{self.listing.title}. If you accept the offer, text 'yes' to this number. Reply in the following format: offer#{self.id}#yes or offer#{self.id}#no "
+    message = client.messages.create from: ENV["TWILIO_PHONE_NUMBER"], to: self.listing.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} bid ₦#{self.price} on #{self.listing.title}. If you accept the offer, text 'yes' to this number. Reply in the following format: offer#{self.id}#yes or offer#{self.id}#no "
    
     # relevant_client = offer.listing.user.phone_number
 
-    message = client.messages.create from: '+441706300252', to: self.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} you successfully bid ₦#{self.price} on #{self.listing.title}. Let's hope #{self.listing.user.first_name} hires you!"
+    message = client.messages.create from: ENV["TWILIO_PHONE_NUMBER"], to: self.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} you successfully bid ₦#{self.price} on #{self.listing.title}. Let's hope #{self.listing.user.first_name} hires you!"
 
   
 
