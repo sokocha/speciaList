@@ -120,7 +120,8 @@ header.navigation {
 
       &:focus,
       &:hover {
-        color: $navigation-color-hover;
+        color: yellow;
+        font-weight: bold;
       }
     }
   }

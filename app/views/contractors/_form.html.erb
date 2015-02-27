@@ -23,15 +23,17 @@
     <%= f.text_field :tag_list, placeholder: "What do you specialize in? e.g. toilets, showers, pipes, drainage, sewage, etc" %>
   </div>
 
-  <div class="field">
-    <%= f.label :certified %><br>
-    <%= f.check_box :certified %>
-  </div>
-  <div class="field">
-    <%= f.label :verified %><br>
-    <%= f.check_box :verified %>
-  </div>
-  <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
+  <% if current_user.role == 'admin' %>
+    <div class="field">
+      <%= f.label :certified %><br>
+      <%= f.check_box :certified %>
+    </div>
+    <div class="field">
+      <%= f.label :verified %><br>
+      <%= f.check_box :verified %>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, :value => @contractor.user.id ||= current_user.try(:id) %>
 
   <div class="actions">
     <%= f.submit "Make me a Contractor!" %>
