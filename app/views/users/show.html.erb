@@ -4,11 +4,13 @@
 
 
   <div id="user_avatar">
+
+
+    <%= link_to image_tag(@user.user_avatar.thumb.url) %>
     <p>
       <%= @user.first_name %> <%= @user.last_name %>
     </p>
-  
-    <%= link_to image_tag(@user.user_avatar.thumb.url) %>
+
   </div>
 
   <% if @user.active_contractor? %>
@@ -50,9 +52,6 @@
   <% end %>
 
 
-
-
-
   <% if @user.active_contractor? %>
     <p>
       <strong>Certification</strong>
@@ -89,9 +88,6 @@
   <% end %>
 
 
-
-
-
   <p>
     <% if current_user.try(:geocoded?) && current_user!=@user%>
       <strong> Distance away:</strong> <%= current_user.distance_from(@user).round(2) %> miles 
@@ -115,21 +111,18 @@
   <% if can? :update, @user %>
     <% if @user.contractor.try(:status) == 'active' %>
       <%= form_for @user.contractor, method: :patch do |f| %>
-      <%= f.hidden_field :status, :value => nil -%>
-      <%= f.submit 'Disable Contractor Profile' %>
+        <%= f.hidden_field :status, :value => nil -%>
+        <%= f.submit 'Disable Contractor Profile' %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
-
-
 
 <% if @user.inactive_contractor? %>
   <%= form_for @user.contractor, method: :patch do |f| %>
     <%= f.hidden_field :status, :value => 'active' -%>
     <%= f.submit 'Enable Contractor Profile' %>
   <% end %>
-<% end %>
-
-<% end %>
 <% end %>
 
 
