@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'faker'
 gem 'neat'
 gem 'bourbon'
 gem 'ransack'
