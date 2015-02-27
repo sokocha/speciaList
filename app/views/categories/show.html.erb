@@ -28,9 +28,13 @@
           <td><span class="badge-success">₦<%= listing.budget %></span></td>
           <td><span class="badge-alert"><%= listing.status %></span></td>
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
-          <% if current_user %>
-          <td><%= current_user.distance_from(listing.try(:user)).round(2) %> miles</td>
-          <% end %>
+          
+          <td>
+            <% if current_user.geocoded? %>
+            <%= current_user.distance_from(listing.try(:user)).round(2) %> miles
+            <% end %>
+          </td>
+          
          
           <% if can? :edit, listing %>
           <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
