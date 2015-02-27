@@ -1,0 +1,104 @@
+<ul class="accordion-tabs">
+  <li class="tab-header-and-content">
+    <a href="javascript:void(0)" class="is-active tab-link"> <%=@user.first_name %>'s Active Listings</a>
+    <div class="tab-content">
+      <table class = 'tables'>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @user.listings.each do |listing| %>
+                <% if listing.status == "uncontracted" %>
+                  <tr>
+                    <td> <%= link_to listing.title, listing_path(listing)  %> </td>
+                    <td><span class="badge-success"><%= listing.try(:status) %></span></td>
+                    <% if listing.booking != nil %>
+                    <td> <%= link_to listing.try(:booking).try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                    <% end %>
+                    <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+    </div>
+  </li>
+  <li class="tab-header-and-content">
+    <a href="javascript:void(0)" class="tab-link"><%=@user.first_name %>'s Active Projects</a>
+    <div class="tab-content">
+      <table class = "tables">
+        
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Total Cost (₦)</th>
+                <th>Status</th>
+                <th>Contractor</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @user.listings.each do |listing| %>
+              <% if listing.try(:booking).try(:status) == 'active' %>
+                <tr>
+                  <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
+                  <td><span class="badge-notice"> ₦<%= listing.booking.offer.price %></span></td>
+                  <td><span class="badge-alert"><%= listing.booking.try(:status) %></span></td>
+
+                  <% if listing.booking != nil %>
+                  <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                  <%else%>
+                    <td> <p>TBD</p></td>
+                  <% end %>
+                  <td> <%= link_to listing.category.name, category_path(listing.category) %> </td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+    </div>
+  </li>
+  <li class="tab-header-and-content">
+    <a href="javascript:void(0)" class="tab-link"><%=@user.first_name %>'s Completed Projects</a>
+    <div class="tab-content">
+      <table class = "tables">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Total Cost (₦)</th>
+                  <th>Status</th>
+                  <th>Contractor</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @user.listings.each do |listing| %>
+                <% if listing.try(:booking).try(:status) == 'complete' %>
+                  <tr>
+                    <td> <%= link_to listing.title, booking_path(listing.booking)  %> </td>
+                    <td><span class="badge-notice"> ₦<%= listing.booking.offer.price %></span></td>
+                    <td><span class="badge"><%= listing.booking.try(:status) %></span></td>
+
+                    <% if listing.booking != nil %>
+                    <td> <%= link_to listing.booking.try(:offer).try(:user).try(:first_name), user_path(listing.try(:booking).try(:offer).try(:user))  %> </td>
+                    <%else%>
+                      <td> <p>TBD</p></td>
+                    <% end %>
+                    <td> 
+                      <%= link_to listing.category.name, category_path(listing.category) %> 
+                    </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>      
+    </div>
+  </li>
+</ul>

@@ -94,7 +94,15 @@ class User < ActiveRecord::Base
   end
 
   def active_contractor?
-    self.contractor != nil && self.contractor.status == 'active'
+    contractor != nil && contractor.status == 'active'
+  end
+
+  def contractor?
+    contractor != nil
+  end
+
+  def inactive_contractor?
+    contractor.try(:status) != 'active'
   end
 
 end
