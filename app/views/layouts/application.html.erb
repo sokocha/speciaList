@@ -11,9 +11,9 @@
 
   <header class="navigation" role="banner">
     <div class="navigation-wrapper" id="navigation-wrapper-2">
-      <a href="javascript:void(0)" class="logo">
-        <h3 id='cursive_logo'>Specialist</h3>
-      </a>
+      <h1>
+        <%= link_to 'Specialist', contractors_path, :id => "cursive_logo", :class=>"logo"  %>
+      </h1>
       <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
       <nav role="navigation">
         <ul id="js-navigation-menu" class="navigation-menu show">
