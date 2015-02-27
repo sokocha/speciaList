@@ -93,4 +93,8 @@ class User < ActiveRecord::Base
     total_vote_score.to_f / bookings.count
   end
 
+  def active_contractor?
+    self.contractor != nil && self.contractor.status == 'active'
+  end
+
 end

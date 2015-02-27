@@ -11,26 +11,26 @@
     <%= link_to image_tag(@user.user_avatar.thumb.url) %>
   </div>
 
-  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+  <% if @user.active_contractor? %>
     <strong><p>Avg. Rating: </strong><%=@user.vote_weight_avg  %></p>
   <% end %>
 
 
-  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+  <% if @user.active_contractor? %>
     <p>
       <strong>Job Category:</strong>
       <%= link_to @user.try(:contractor).try(:category).try(:name), category_path(@user.try(:contractor).try(:category))  %> 
     </p>
   <% end %>
 
-  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+  <% if @user.active_contractor? %>
     <p>
       <strong>Hourly Wage:</strong>
       ₦<%= @user.try(:contractor).try(:wage) %>
     </p>
   <% end %>
 
-  <% if @user.contractor != nil && @user.contractor.status == 'active' %>
+  <% if @user.active_contractor? %>
     <p>
       <strong>Status:</strong>
       <span class="badge-success"><%= @user.contractor.status %></span>
