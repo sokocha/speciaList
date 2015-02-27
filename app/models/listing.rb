@@ -32,7 +32,7 @@ class Listing < ActiveRecord::Base
 # SENDS OUT SMS TO ALL CONTRACTORS WITHIN A CATEGORY,EXCEPT THE LISTING CREATOR
     self.category.contractors.where(status: 'active').map do |contractor|
       # unless contractor.user == self.user
-      message = client.messages.create from: '+441706300252', to: contractor.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} is paying ₦#{self.budget} for a #{self.category.name}. Description: #{self.description}. If interested, reply this message with the following format listing#{self.id}#your_offer_in_naira_here"
+      message = client.messages.create from: Rails.application.secrets.twilio_phone_number, to: contractor.user.phone_number, body: "#{self.user.first_name} #{self.user.last_name} is paying ₦#{self.budget} for a #{self.category.name}. Description: #{self.description}. If interested, reply this message with the following format listing#{self.id}#your_offer_in_naira_here"
       # end 
     end
 
