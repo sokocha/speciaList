@@ -18,9 +18,9 @@ normal_user1 = User.create!(first_name: 'James', last_name: 'fajimolu', address:
 
 normal_user2 = User.create!(first_name: 'Chudi', last_name: 'Ngonadi', address: '33 alfred rewane',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user", user_avatar: 'http://dev.sol-technology.com.au/QUT/images/profile/tempProfile1.jpg')
 
-contractor_admin = Contractor.create!(user_id: admin_user.id, wage: 235, category_id: 1)
-contractor_1 = Contractor.create!(user_id: normal_user1.id, wage: 2114, category_id: 2)
-contractor_2 = Contractor.create!(user_id: normal_user2.id, wage: 2114, category_id: 3)
+contractor_admin = Contractor.create!(user_id: admin_user.id, wage: 235, category_id: Category.first.id)
+contractor_1 = Contractor.create!(user_id: normal_user1.id, wage: 2114, category_id: Category.last.id) 
+contractor_2 = Contractor.create!(user_id: normal_user2.id, wage: 2114, category_id: Category.first(2).last.id)
 
 category_1 = Category.create!(name: 'Plumber')
 category_2 = Category.create!(name: 'Carpenter')
