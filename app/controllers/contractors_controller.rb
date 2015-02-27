@@ -9,7 +9,7 @@ class ContractorsController < ApplicationController
     if params[:tag]
       @contractors = Contractor.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)
     else
-      @contractors = Contractor.all.paginate(page: params[:page], per_page: 5)
+      @contractors = Contractor.all.paginate(page: params[:page], per_page: 10)
     end
 
     @q = @contractors.search(params[:q])

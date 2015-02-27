@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = Contractor.ransack(params[:q])
     @contractors = @q.result(distinct: true)
-    @contractors = @q.result.paginate(page: params[:page], per_page: 5).order('created_at DESC')
+    @contractors = @q.result.paginate(page: params[:page], per_page: 10).order('created_at DESC')
   end
 
     protected
