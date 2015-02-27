@@ -35,12 +35,12 @@ class Booking < ActiveRecord::Base
   end
 
   def send_new_booking_sms
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token, Rails.application.secrets.twilio_phone_number
 
     booking_members = [self.offer.user,self.listing.user]
     booking_members.each do |member|
     # binding.pry
-    message = client.messages.create from: '+441706300252', to: member.phone_number, body: "Well Done! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name}, meet your #{self.listing.category.name} #{self.offer.user.first_name} #{self.offer.user.last_name}. Both parties have come to agreement at ₦#{self.offer.price}. Enjoy!!! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name} when you are satisfied with the work, reply this message with the following format booking#{self.id}#complete. "
+    message = client.messages.create from: ENV["TWILIO_PHONE_NUMBER"], to: member.phone_number, body: "Well Done! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name}, meet your #{self.listing.category.name} #{self.offer.user.first_name} #{self.offer.user.last_name}. Both parties have come to agreement at ₦#{self.offer.price}. Enjoy!!! #{self.offer.listing.user.first_name} #{self.offer.listing.user.last_name} when you are satisfied with the work, reply this message with the following format booking#{self.id}#complete. "
     end
   end
 
@@ -51,7 +51,7 @@ class Booking < ActiveRecord::Base
       booking_members = [self.offer.user,self.listing.user]
       booking_members.each do |member|
 
-        message = client.messages.create from: '+441706300252', to: member.phone_number, body: "Congrats on the completion of #{self.listing.title}! Make sure to leave feedback on each other"
+        message = client.messages.create from: ENV["TWILIO_PHONE_NUMBER"], to: member.phone_number, body: "Congrats on the completion of #{self.listing.title}! Make sure to leave feedback on each other"
 
     end
   end
