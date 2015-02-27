@@ -20,11 +20,11 @@ category_5 = Category.create!(name: 'Electrician')
 category_6 = Category.create!(name: 'Engineer')
 
 
-admin_user = User.create!(first_name: 'Sadiq', last_name: 'Okocha', address: '8 alhaji kanike close', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin", user_avatar: 'http://organicthemes.com/demo/profile/files/2012/12/profile_img.png')
+admin_user = User.create!(first_name: 'Sadiq', last_name: 'Okocha', address: '8 alhaji kanike close, ikoyi, lagos', phone_number: '07534092880', email: "admin@specialist.com", password: 'password', role: "admin", user_avatar: 'http://organicthemes.com/demo/profile/files/2012/12/profile_img.png')
 
-normal_user1 = User.create!(first_name: 'James', last_name: 'fajimolu', address: '12 sanusfi fafunwa',phone_number: '08188699925',email: "user@specialist.com", password: 'password', role: "user", user_avatar: 'http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg' )
+normal_user1 = User.create!(first_name: 'James', last_name: 'fajimolu', address: '12 sanusfi fafunwa, victoria island, lagos',phone_number: '08188699925',email: "user@specialist.com", password: 'password', role: "user", user_avatar: 'http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg' )
 
-normal_user2 = User.create!(first_name: 'Chudi', last_name: 'Ngonadi', address: '33 alfred rewane',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user", user_avatar: 'http://dev.sol-technology.com.au/QUT/images/profile/tempProfile1.jpg')
+normal_user2 = User.create!(first_name: 'Chudi', last_name: 'Ngonadi', address: '33 alfred rewane, ikoyi, lagos',phone_number: '07458720993', email: "user1@specialist.com", password: 'password', role: "user", user_avatar: 'http://dev.sol-technology.com.au/QUT/images/profile/tempProfile1.jpg')
 
 
 normal_user3 = User.create!(first_name:Faker::Name.first_name, last_name: Faker::Name.first_name, address: Faker::Address.street_address, phone_number: Faker::Number.number(11), email: Faker::Internet.safe_email, password: 'password', role: 'user', user_avatar: Faker::Avatar.image)

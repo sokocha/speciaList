@@ -11,11 +11,9 @@
         <th>Budget ₦</th>
         <th>Status</th>
         <th>Client</th>
-        <% if current_user %>
         <th>Distance</th>
-        <% end %>
         <% if current_user.try(:role) == "admin" %>
-        <th colspan="5"></th>
+          <th colspan="5"></th>
         <% end %>
       </tr>
     </thead>
@@ -30,8 +28,12 @@
           <td><%= link_to listing.user.first_name, user_path(listing.user)  %></td>
           
           <td>
-            <% if current_user.geocoded? %>
+            <% if current_user.try(:geocoded?) %>
             <%= current_user.distance_from(listing.try(:user)).round(2) %> miles
+            <% else %>
+            <%= link_to 'Signup or', new_user_registration_path  %>
+
+            <%= link_to 'Login', new_user_session_path  %>
             <% end %>
           </td>
           
