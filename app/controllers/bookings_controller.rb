@@ -13,14 +13,25 @@ class BookingsController < ApplicationController
     respond_with(@bookings)
   end
 
+
+
   def show
     @booking = Booking.find(params[:id])
     @comments = @booking.comment_threads.order('created_at desc')
+    @reviews = Rating.where(booking_id: @booking.id).order("created_at DESC")
     # @comment = Comment.build_from(@booking, current_user.id, "")
     #@comment = current_user.comments.new
 
     if current_user
       @comment = Comment.build_from(@booking, current_user.id, "" )
+    end
+
+
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review_professionalism = @reviews.average(:professionalism_rating)
+      @avg_review_quality = @reviews.average(:quality_rating)
     end
 
   end
