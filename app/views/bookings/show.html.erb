@@ -45,6 +45,27 @@
 <% end %>
 </div>
 
+<p>
+  <% if @booking.ratings.blank?%>
+    <%= 'No ratings yet! Add one!' %>
+  <% else %>
+    
+
+  <strong>Booking rating:</strong><br>
+  <em><%= "#{@reviews.length} reviews" %></em><br>
+  <% @booking.ratings.limit(1).each do |rating| %>
+    <tr>
+      <td>Professionalism Rating:</td> 
+      <div class="star-rating" data-score="<%= @avg_review_professionalism %>"></div><br>
+      
+      <td>Quality Rating:</td> 
+      <div class="star-rating" data-score="<%= @avg_review_quality %>"></div><br>
+
+    </tr>
+      <% end %>
+    <% end %>
+</p>
+
 
 
 
