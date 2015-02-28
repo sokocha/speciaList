@@ -1,4 +1,4 @@
-<%= form_for(@rating) do |f| %>
+<%= form_for(@booking, @rating) do |f| %>
   <% if @rating.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :professionalism_rating %><br>
+    <%= f.label :professionalism_rating, Professionalism %><br>
     <%= f.number_field :professionalism_rating %>
   </div>
   <div class="field">
-    <%= f.label :quality_rating %><br>
+    <%= f.label :quality_rating , Quality%><br>
     <%= f.number_field :quality_rating %>
   </div>
   <div class="actions">
