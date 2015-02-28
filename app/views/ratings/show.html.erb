@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professionalism rating:</strong>
+  <%= @rating.professionalism_rating %>
+</p>
+
+<p>
+  <strong>Quality rating:</strong>
+  <%= @rating.quality_rating %>
+</p>
+
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>

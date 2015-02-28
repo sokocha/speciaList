@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professionalism_rating: 1
+  quality_rating: 1
+
+two:
+  professionalism_rating: 1
+  quality_rating: 1

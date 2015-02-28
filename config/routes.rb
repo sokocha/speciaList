@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :ratings
+
   resources :categories
 
   resources :bookings do
