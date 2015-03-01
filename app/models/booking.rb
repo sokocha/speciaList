@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
 
   belongs_to :listing
   belongs_to :offer
-  has_one :rating 
+  has_many :ratings 
 
   validates :offer_id, presence: true
   acts_as_votable
