@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  resources :ratings
+
 
   resources :categories
 
   resources :bookings do
+    resources :comments, :only => [:create, :destroy, :new]
+    resources :ratings
     get 'page/:page', action: :index, on: :collection
     member do
         put "originality_rating", to: "bookings#score_originality"
       end
-    resources :comments, :only => [:create, :destroy, :new]
-    resources :ratings
   end
+
 
   get 'tags/:tag', to: 'contractors#index', as: :tag
 

@@ -45,6 +45,10 @@
 <% end %>
 </div>
 
+<%= link_to 'Add a review to this booking', new_booking_rating_path(@booking) %> |
+<%= link_to 'review a new booking', new_booking_path %> |
+<%= link_to 'Back', bookings_path %>
+
 <p>
   <% if @booking.ratings.blank?%>
     <%= 'No ratings yet! Add one!' %>
