@@ -59,10 +59,10 @@
   <em><%= "#{@reviews.length} reviews" %></em><br>
   <% @booking.ratings.limit(1).each do |rating| %>
     <tr>
-      <td>Professionalism Rating:</td> 
+      <td>Professionalism Score:</td> 
       <div class="star-rating" data-score="<%= @avg_review_professionalism %>"></div><br>
       
-      <td>Quality Rating:</td> 
+      <td>Quality Score:</td> 
       <div class="star-rating" data-score="<%= @avg_review_quality %>"></div><br>
 
     </tr>
