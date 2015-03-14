@@ -33,7 +33,7 @@
       <%= f.check_box :verified %>
     </div>
   <% end %>
-  <%= f.hidden_field :user_id, :value => @contractor.user.id ||= current_user.try(:id) %>
+  <%= f.hidden_field :user_id, :value => @contractor.user.try(:id) || current_user.try(:id) %>
 
   <div class="actions">
     <%= f.submit "Make me a Contractor!" %>
