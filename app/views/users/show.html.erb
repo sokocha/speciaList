@@ -122,7 +122,7 @@
 <% end %>
 
 
-<% if @user.contractor %>
+<% if @user.contractor? && @user.inactive_contractor? %>
   <%= form_for @user.contractor, method: :patch do |f| %>
     <%= f.hidden_field :status, :value => 'active' -%>
     <%= f.submit 'Enable Contractor Profile' %>

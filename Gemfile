@@ -13,6 +13,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'geocoder'
 gem 'acts_as_commentable_with_threading'
 gem 'cancancan'
+gem 'fog', '~> 1.3.1'
 
 group :development, :test do
   gem 'pry-rails'
