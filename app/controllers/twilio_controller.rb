@@ -26,7 +26,7 @@ class TwilioController < ApplicationController
 
 
     # alter receiver phone number to make it from +44 to 07
-    if sender.slice!(0..2) == "+44" || sender.slice!(0..3) = "+234"
+    if sender.slice!(0..2) == "+44" 
       sender = sender.insert(0,'0')
 
 
